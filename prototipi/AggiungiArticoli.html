@@ -13,40 +13,39 @@
   </head>
 
   <style>
-  #message{
-    text-align: center;
-    margin-top:40px;
-    margin-right: 450px;
-    margin-left: 450px;
-  }
+    #message{
+     text-align: center;
+     margin-top:40px;
+     margin-right: 450px;
+     margin-left: 450px;
+    }
 
-  #table{
-    text-align:left;
-    border: 2px solid rgb(149, 174, 226);
-    margin-top:60px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:40px;
-    border-spacing: 5px;
-    border-collapse: separate;
-    table-layout: auto;
-  }
+    #table{
+        text-align:left;
+        border: 2px solid rgb(149, 174, 226);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:50px;
+        border-spacing: 5px;
+        border-collapse: separate;
+        table-layout: auto;
+    }
 
-  #td{
-    height:50px;
-    width:160px;
-  }
+    #td{
+        height:50px;
+        width:160px;
+    }
 
-  #td2{
-    width:300px;
-  }
+    #td2{
+        width:300px;
+    }
 
-  #button{
-    width: 150px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border: 2px solid rgb(149, 174, 226);
-    background-color:#99CBFF;
+    #button{
+        width: 150px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border: 2px solid rgb(149, 174, 226);
+        background-color:#99CBFF;
     }
 
     #button2{
@@ -56,6 +55,15 @@
         border: 2px solid rgb(149, 174, 226);
         background-color:#99CBFF;
     }
+
+    #button-conferma{
+        width: 150px;
+        margin-left: 20px;
+        margin-right: 20px;
+        border: 2px solid rgb(149, 174, 226);
+        background-color:#99CBFF;
+    }
+
 
 
   </style>
@@ -168,34 +176,23 @@
 
     </table>
 
-    <br> <br>
-
-
     <!-- questa tabella serve per visualizzare in forma breve gli articoli che vogliamo aggiungere al magazzino (qunado verrà premuto il pulsante "conferma a fine della tabella il contenuto aggiorna il DB") -->
     <table id="table" cellpadding="8">
-        <tr>
-            <td>
-                ID
-            </td>
-            <td>
-                DESCRIZIONE
-            </td>
+        <tr class="table-primary"><td id="td">ID</td>
+            <td id="td2">DESCRIZIONE</td>
         </tr>
-        <tr>
-            <tr>
-                <td>
-                    ...
-                </td>
-                <td>
-                    ...
-                </td>
-            </tr>
+
+        <tr class="table-primary"><td id="td">...</td>
+            <td>...</td>
         </tr>
-        <tr>
+
+        <tr class="table-primary">
+            <td><button type="submit" value="submit" action="" id="button-conferma">Conferma</button></td>
             <td>
-                <button type="submit" value="submit" action="" id="button-conferma">Conferma</button>
+                Conferma per l'inserimento dei prodotti
             </td>
         </tr>
+
     </table>
 
      <!-- Optional JavaScript -->
