@@ -137,6 +137,7 @@
           </nav>
     </header>
 
+    <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
     <table id="table" cellpadding="8">
         <tr class="table-primary"><td id="td"><b>ID</b></td><td id="td2">
             <form name="DatiArticolo" method="post" action="">
@@ -174,6 +175,36 @@
         </form>
 
 
+    </table>
+
+    <br> <br>
+
+
+    <!-- questa tabella serve per visualizzare in forma breve gli articoli che vogliamo aggiungere al magazzino (qunado verrà premuto il pulsante "conferma a fine della tabella il contenuto aggiorna il DB") -->
+    <table id="table" cellpadding="8">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                DESCRIZIONE
+            </td>
+        </tr>
+        <tr>
+            <tr>
+                <td>
+                    ...
+                </td>
+                <td>
+                    ...
+                </td>
+            </tr>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" value="submit" action="" id="button-conferma">Conferma</button>
+            </td>
+        </tr>
     </table>
 
      <!-- Optional JavaScript -->
