@@ -129,6 +129,7 @@
           </nav>
     </header>
 
+    <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
     <table id="table" cellpadding="8">
         <tr class="table-primary"><td id="td"><b>ID</b></td><td id="td2">
             <form name="DatiArticolo" method="post" action="">
@@ -167,7 +168,37 @@
 
     </table>
 
-    <!-- Optional JavaScript -->
+    <br> <br>
+
+
+    <!-- questa tabella serve per visualizzare in forma breve gli articoli che vogliamo aggiungere al magazzino (qunado verrà premuto il pulsante "conferma a fine della tabella il contenuto aggiorna il DB") -->
+    <table id="table" cellpadding="8">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                DESCRIZIONE
+            </td>
+        </tr>
+        <tr>
+            <tr>
+                <td>
+                    ...
+                </td>
+                <td>
+                    ...
+                </td>
+            </tr>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" value="submit" action="" id="button-conferma">Conferma</button>
+            </td>
+        </tr>
+    </table>
+
+     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
