@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\StoricoController;
+use App\Http\Controllers\MagazzinoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/storico', [StoricoController::class, 'index']);
+Route::get('/gestione', [MagazzinoController::class, 'index']);
+Route::delete('/gestione/{id}', [MagazzinoController::class, 'destroy']);

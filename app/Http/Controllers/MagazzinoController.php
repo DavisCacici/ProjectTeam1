@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\articolo;
+use App\Models\magazzino;
+use App\Models\tipologia;
+use App\Models\marca;
 
 class MagazzinoController extends Controller
 {
@@ -13,7 +17,19 @@ class MagazzinoController extends Controller
      */
     public function index()
     {
-        //
+        //art dati articoli
+        $art = new articolo;
+        $art = $art->get();
+        //mag dati magazzino
+        $mag = new magazzino;
+        $mag = $mag->get();
+        //tip dati della tipologia
+        $tip = new tipologia;
+        $tip = $tip->get();
+        //mar dati della marca
+        $mar = new marca;
+        $mar = $mar->get();
+        return view('GestioneProdotti', compact('art', 'mag', 'tip', 'mar'));
     }
 
     /**
@@ -79,6 +95,10 @@ class MagazzinoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mag = new magazzino;
+        $mag = $mag->find($id);
+        $mag->delete();
+
+        return redirect('/gestione');
     }
 }
