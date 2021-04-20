@@ -36,10 +36,16 @@
         width: 200px;
         }
 
+        #label{
+        text-align: center;
+        width: 100%;
+        }
+
     </style>
 
     <body>
         <header>
+            <!--Menù Inziale/Navbar-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
                 <div class="container-fluid">
                   <a class="navbar-brand" href="#"><img src="https://www.brandazza.it/wp-content/uploads/2018/07/brandazza-gmg-logo.png" alt = "" width="75" height="75"></a>
@@ -90,8 +96,10 @@
                 </div>
             </nav>
         </header>
-
+        <!--Tabella Magazzino-->
+        <label id="label">Magazzino</label>
         <table id="table">
+            <!-- Metadati tabella-->
             <tr class="table-primary">
                 <td id="td">ID</td>
                 <td id="td">LEAN</td>
@@ -99,15 +107,28 @@
                 <td id="td">TIPOLIGA</td>
                 <td id="td">BOTTONI</td>
             </tr>
+            <!--Qui andrà riportato il contenuto del Db Magazzino-->
+            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
+            <tr>
+                <td id="td">...</td>
+            </tr>
         </table>
 
+        <!--Tabella Negozio-->
+        <label id="label">Negozio</label>
         <table id="table">
+            <!-- Metadati tabella-->
             <tr class="table-primary">
                 <td id="td">ID</td>
                 <td id="td">LEAN</td>
                 <td id="td">SKU</td>
                 <td id="td">TIPOLIGA</td>
                 <td id="td">BOTTONI</td>
+            </tr>
+            <!-- Qui andrà riportato il contenuto del Db Negozio-->
+            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
+            <tr>
+                <td id="td">...</td>
             </tr>
         </table>
 
