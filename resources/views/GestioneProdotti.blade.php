@@ -24,7 +24,7 @@
         border: 2px solid rgb(149, 174, 226);
         margin-left: auto;
         margin-right: auto;
-        margin-top:20px;
+
         border-spacing: 5px;
         border-collapse: separate;
         }
@@ -33,6 +33,12 @@
         height:30px;
         width: 150px;
         }
+
+        #label{
+            margin-left: 330px;
+            margin-right: auto;
+        }
+
     </style>
 
     <body>
@@ -83,7 +89,7 @@
                 </div>
             </nav>
         </header>
-        <label id="label">Magazzino</label>
+        <label id="label"><h1>Magazzino</h1></label>
         <table id="table">
             <!-- Metadati tabella-->
             <tr class="table-primary">
@@ -92,6 +98,7 @@
                 <td id="td">SKU</td>
                 <td id="td">TIPOLOGIA</td>
                 <td id="td">MARCA</td>
+                <td id="td">&nbsp</td>
             </tr>
             <!--Qui andrà riportato il contenuto del Db Magazzino-->
             <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
@@ -123,24 +130,6 @@
                     </td>
                 </tr>
             @endforeach
-        </table>
-
-        <!--Tabella Negozio-->
-        <label id="label">Negozio</label>
-        <table id="table">
-            <!-- Metadati tabella-->
-            <tr class="table-primary">
-                <td id="td">ID</td>
-                <td id="td">LEAN</td>
-                <td id="td">SKU</td>
-                <td id="td">TIPOLIGA</td>
-                <td id="td">BOTTONI</td>
-            </tr>
-            <!-- Qui andrà riportato il contenuto del Db Negozio-->
-            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
-            <tr>
-                <td id="td">...</td>
-            </tr>
         </table>
 
         <!-- Optional JavaScript -->
