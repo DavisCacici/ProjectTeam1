@@ -30,9 +30,8 @@ class MagazzinoController extends Controller
         //mar dati della marca
         $mar = new marca;
         $mar = $mar->get();
-        $neg = new negozio;
-        $neg = $neg->get();
-        return view('magazzino', compact('neg', 'art', 'mag', 'tip', 'mar'));
+
+        return view('magazzino', compact('art', 'mag', 'tip', 'mar'));
     }
 
     /**

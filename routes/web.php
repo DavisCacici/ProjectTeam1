@@ -29,3 +29,4 @@ Route::get('/magazzino', [MagazzinoController::class, 'index']);
 Route::get('/negozio', [NegozioController::class, 'index']);
 Route::delete('/negozio/{id}', [NegozioController::class, 'destroy']);
 Route::delete('/magazzino/{id}', [MagazzinoController::class, 'destroy']);
+Route::get('/negozio/{id}', [NegozioController::class, 'sposta']);

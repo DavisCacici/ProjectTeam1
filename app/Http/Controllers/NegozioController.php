@@ -20,9 +20,6 @@ class NegozioController extends Controller
     {
         $art = new articolo;
         $art = $art->get();
-        //mag dati magazzino
-        $mag = new magazzino;
-        $mag = $mag->get();
         //tip dati della tipologia
         $tip = new tipologia;
         $tip = $tip->get();
@@ -31,7 +28,7 @@ class NegozioController extends Controller
         $mar = $mar->get();
         $neg = new negozio;
         $neg = $neg->get();
-        return view('negozio', compact('neg', 'art', 'mag', 'tip', 'mar'));
+        return view('negozio', compact('neg', 'art', 'tip', 'mar'));
     }
 
     /**
@@ -102,5 +99,25 @@ class NegozioController extends Controller
         $neg->delete();
 
         return redirect('/negozio');
+    }
+
+    public function sposta($id)
+    {
+        $neg = new negozio;
+        $art = new articolo;
+        $mag = new magazzino;
+        $mag = $mag->find($id);
+        echo $mag;
+        foreach($art as $a)
+        {
+            if($mag[1] == $a->id)
+            {
+                $mag->delete();
+                $neg->create([
+                    'articolo_id' => $a->id
+                ]);
+            }
+        }
+        return redirect('/magazzino');
     }
 }
