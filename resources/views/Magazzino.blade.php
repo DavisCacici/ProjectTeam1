@@ -89,20 +89,46 @@
                 </div>
             </nav>
         </header>
-
-        <div class="alert alert-primary" role="alert" id="message">
-            Salve utente, hai eseguito correttamente l'accesso!!
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-
+        <label id="label">Magazzino</label>
         <table id="table">
-            <tr class="table-primary"><td id="td">Negozio</td><td>Mostra tutti i prodotti esposti nel negozio</td></tr>
-            <tr class="table-primary"><td id="td">Magazzino</td><td>Mostra i prodotti all'interno del magazzino</td></tr>
-            <tr class="table-primary"><td id="td">Aggiungi prodotto</td><td>Permette di aggiungere un prodotto</td></tr>
-            <tr class="table-primary"><td id="td">Rimuovi prodotto</td><td>Permette di elminare un prodotto</td></tr>
-            <tr class="table-primary"><td id="td">Gestione prodotti</td><td>Permette di gestire il magazzino, vedere la lista dei prodotti e quali prodotti sono stati venduti</td></tr>
+            <!-- Metadati tabella-->
+            <tr class="table-primary">
+                <td id="td">ID</td>
+                <td id="td">LEAN</td>
+                <td id="td">SKU</td>
+                <td id="td">TIPOLOGIA</td>
+                <td id="td">MARCA</td>
+            </tr>
+            <!--Qui andrà riportato il contenuto del Db Magazzino-->
+            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
+            @foreach ($mag as $m)
+                <tr>
+                    <td>{{$m->id}}</td>
+                    @foreach ($art as $a)
+                        @if ($m->articolo_id == $a->id)
+                            <td>{{$a->lean}}</td>
+                            <td>{{$a->sku}}</td>
+                            @foreach ($tip as $t)
+                                @if ($a->tipologia_id == $t->id)
+                                    <td>{{$t->nome}}</td>
+                                @endif
+                            @endforeach
+                            @foreach ($mar as $ma)
+                                    @if ($a->marca_id == $ma->id)
+                                        <td>{{$ma->nome}}</td>
+                                    @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                    <td>
+                        <form method="POST" action="/magazzino/{{$m->id}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">elimina</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
         </table>
 
         <!-- Optional JavaScript -->
