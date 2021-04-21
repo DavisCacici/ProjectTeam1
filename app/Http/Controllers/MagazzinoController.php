@@ -7,6 +7,7 @@ use App\Models\articolo;
 use App\Models\magazzino;
 use App\Models\tipologia;
 use App\Models\marca;
+use App\Models\negozio;
 
 class MagazzinoController extends Controller
 {
@@ -29,7 +30,9 @@ class MagazzinoController extends Controller
         //mar dati della marca
         $mar = new marca;
         $mar = $mar->get();
-        return view('GestioneProdotti', compact('art', 'mag', 'tip', 'mar'));
+        $neg = new negozio;
+        $neg = $neg->get();
+        return view('magazzino', compact('neg', 'art', 'mag', 'tip', 'mar'));
     }
 
     /**
@@ -99,6 +102,6 @@ class MagazzinoController extends Controller
         $mag = $mag->find($id);
         $mag->delete();
 
-        return redirect('/gestione');
+        return redirect('/magazzino');
     }
 }
