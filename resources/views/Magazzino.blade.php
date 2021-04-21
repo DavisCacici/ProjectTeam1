@@ -24,21 +24,19 @@
         border: 2px solid rgb(149, 174, 226);
         margin-left: auto;
         margin-right: auto;
-
         border-spacing: 5px;
         border-collapse: separate;
         }
 
-        #td{
-        height:30px;
-        width: 150px;
-        }
-
         #label{
-            margin-left: 330px;
+            margin-left: 230px;
             margin-right: auto;
         }
 
+        #td{
+        height:30px;
+        width: 170px;
+        }
     </style>
 
     <body>
