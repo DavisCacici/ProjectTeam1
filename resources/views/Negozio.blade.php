@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <title> Home </title>
+        <title> Negozio</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,32 +12,30 @@
     </head>
 
     <style>
-        #message{
-        text-align: center;
-        margin-top:20px;
-        margin-right: 450px;
-        margin-left: 450px;
+        #table{
+            text-align:left;
+            border: 2px solid black;
+            margin-left: 20%;
+            margin-right: 20%;
+            border-spacing: 3px;
+            border-collapse: separate;
         }
 
-        #table{
-        text-align:left;
-        border: 2px solid rgb(149, 174, 226);
-        margin-left: auto;
-        margin-right: auto;
-        margin-top:20px;
-        border-spacing: 5px;
-        border-collapse: separate;
+        #label{
+            position: relative;
+            margin-left: 20%;
+            margin-right: 20%;
         }
 
         #td{
-        height:30px;
-        width: 200px;
+            height:30px;
+            width: 170px;
         }
     </style>
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="/"><img src="https://www.brandazza.it/wp-content/uploads/2018/07/brandazza-gmg-logo.png" alt = "" width="75" height="75"></img></a>
                 <a class="navbar-brand" href="/"><img src="https://www.brandazza.it/wp-content/uploads/2018/12/logo-brandazza-pesca-bianco.png" alt = "" width="75" height="75"></img></a>
@@ -91,16 +89,17 @@
         </header>
 
          <!--Tabella Negozio-->
-         <label id="label">Negozio</label>
+         <label id="label"><h1>Negozio</h1></label>
          <table id="table">
              <!-- Metadati tabella-->
-             <tr class="table-primary">
-                 <td id="td">ID</td>
-                 <td id="td">LEAN</td>
-                 <td id="td">SKU</td>
-                 <td id="td">TIPOLIGA</td>
-                 <td id="td">BOTTONI</td>
-             </tr>
+             <tr class="p-3 mb-2 bg-secondary text-white">
+                <td id="td">ID</td>
+                <td id="td">LEAN</td>
+                <td id="td">SKU</td>
+                <td id="td">TIPOLOGIA</td>
+                <td id="td">MARCA</td>
+                <td id="td">&nbsp</td>
+            </tr>
              <!-- Qui andrà riportato il contenuto del Db Negozio-->
              <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
              @foreach ($neg as $n)

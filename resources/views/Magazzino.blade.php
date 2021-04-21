@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <title> Home </title>
+        <title> Magazzino</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,36 +12,31 @@
     </head>
 
     <style>
-        #message{
-        text-align: center;
-        margin-top:20px;
-        margin-right: 450px;
-        margin-left: 450px;
-        }
 
         #table{
-        text-align:left;
-        border: 2px solid rgb(149, 174, 226);
-        margin-left: auto;
-        margin-right: auto;
-        border-spacing: 5px;
-        border-collapse: separate;
+            text-align:left;
+            border: 2px solid black;
+            margin-left: 20%;
+            margin-right: 20%;
+            border-spacing: 3px;
+            border-collapse: separate;
         }
 
         #label{
-            margin-left: 230px;
-            margin-right: auto;
+            position: relative;
+            margin-left: 20%;
+            margin-right: 20%;
         }
 
         #td{
-        height:30px;
-        width: 170px;
+            height:30px;
+            width: 170px;
         }
     </style>
 
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="/"><img src="https://www.brandazza.it/wp-content/uploads/2018/07/brandazza-gmg-logo.png" alt = "" width="75" height="75"></img></a>
                 <a class="navbar-brand" href="/"><img src="https://www.brandazza.it/wp-content/uploads/2018/12/logo-brandazza-pesca-bianco.png" alt = "" width="75" height="75"></img></a>
@@ -93,10 +88,11 @@
                 </div>
             </nav>
         </header>
+
         <label id="label"><h1>Magazzino</h1></label>
         <table id="table">
             <!-- Metadati tabella-->
-            <tr class="table-primary">
+            <tr class="p-3 mb-2 bg-secondary text-white">
                 <td id="td">ID</td>
                 <td id="td">LEAN</td>
                 <td id="td">SKU</td>
