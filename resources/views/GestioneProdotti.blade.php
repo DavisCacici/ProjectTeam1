@@ -95,8 +95,8 @@
             </tr>
             <!--Qui andrà riportato il contenuto del Db Magazzino-->
             <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
-            <tr>
-                @foreach ($mag as $m)
+            @foreach ($mag as $m)
+                <tr>
                     <td>{{$m->id}}</td>
                     @foreach ($art as $a)
                         @if ($m->articolo_id == $a->id)
@@ -106,11 +106,11 @@
                                 @if ($a->tipologia_id == $t->id)
                                     <td>{{$t->nome}}</td>
                                 @endif
-                                @foreach ($mar as $ma)
+                            @endforeach
+                            @foreach ($mar as $ma)
                                     @if ($a->marca_id == $ma->id)
                                         <td>{{$ma->nome}}</td>
                                     @endif
-                                @endforeach
                             @endforeach
                         @endif
                     @endforeach
@@ -121,9 +121,8 @@
                             <button type="submit" class="btn btn-danger">elimina</button>
                         </form>
                     </td>
-                @endforeach
-            </tr>
-
+                </tr>
+            @endforeach
         </table>
 
         <!--Tabella Negozio-->
