@@ -93,23 +93,23 @@
             </tr>
             {{-- ciclo i dati della tabella storico per averne in output l'elenco --}}
             @foreach ($storico as $s)
-            <tr>
-                <td>{{$s->id}}</td>
-                {{-- ciclo i dati articolo per poi fare un if per la corrispondenza della chiave esterna --}}
-                @foreach ($art as $a)
-                    @if ($s->articolo_id == $a->id)
-                        <td>{{$a->lean}}</td>
-                        <td>{{$a->sku}}</td>
-                        @foreach ($tipo as $t)
-                            @if ($a->tipologia_id == $t->id)
-                                <td>{{$t->nome}}</td>
-                            @endif
-                        @endforeach
-                    @endif
-                @endforeach
-                {{-- <td>{{$s->articolo_id}}</td>
-                <td>{{}}</td> --}}
-            </tr>
+                <tr>
+                    <td>{{$s->id}}</td>
+                    {{-- ciclo i dati articolo per poi fare un if per la corrispondenza della chiave esterna --}}
+                    @foreach ($art as $a)
+                        @if ($s->articolo_id == $a->id)
+                            <td>{{$a->lean}}</td>
+                            <td>{{$a->sku}}</td>
+                            @foreach ($tipo as $t)
+                                @if ($a->tipologia_id == $t->id)
+                                    <td>{{$t->nome}}</td>
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+                    {{-- <td>{{$s->articolo_id}}</td>
+                    <td>{{}}</td> --}}
+                </tr>
             @endforeach
 
         </table>
