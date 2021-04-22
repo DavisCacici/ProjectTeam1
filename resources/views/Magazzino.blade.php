@@ -127,7 +127,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">elimina</button>
                         </form>
-                        <form method="GET" action="/negozio/{{$m->id}}">
+                        <form method="POST" action="/magazzino/{{$m->id}}">
                             @csrf
                             <button type="submit" class="btn btn-primary">sposta</button>
                         </form>

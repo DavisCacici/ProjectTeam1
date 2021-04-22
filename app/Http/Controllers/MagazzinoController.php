@@ -103,4 +103,18 @@ class MagazzinoController extends Controller
 
         return redirect('/magazzino');
     }
+
+    public function sposta($id)
+    {
+        $neg = new negozio;
+        $mag = new magazzino;
+        $mag = $mag->find($id);
+
+        $neg->create([
+            'articolo_id' => $mag->articolo_id
+        ]);
+        $mag->delete();
+
+        return redirect('/magazzino');
+    }
 }

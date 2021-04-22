@@ -101,23 +101,4 @@ class NegozioController extends Controller
         return redirect('/negozio');
     }
 
-    public function sposta($id)
-    {
-        $neg = new negozio;
-        $art = new articolo;
-        $mag = new magazzino;
-        $mag = $mag->find($id);
-        echo $mag;
-        foreach($art as $a)
-        {
-            if($mag[1] == $a->id)
-            {
-                $mag->delete();
-                $neg->create([
-                    'articolo_id' => $a->id
-                ]);
-            }
-        }
-        return redirect('/magazzino');
-    }
 }
