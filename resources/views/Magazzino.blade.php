@@ -32,6 +32,10 @@
             height:30px;
             width: 170px;
         }
+
+        .botton{
+            display: flex;
+        }
     </style>
 
     <body>
@@ -121,7 +125,7 @@
                             @endforeach
                         @endif
                     @endforeach
-                    <td>
+                    <td class="botton">
                         <form method="POST" action="/magazzino/{{$m->id}}">
                             @csrf
                             @method('DELETE')
