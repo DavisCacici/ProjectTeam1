@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticoloController;
 use App\Http\Controllers\StoricoController;
 use App\Http\Controllers\MagazzinoController;
 use App\Http\Controllers\NegozioController;
@@ -30,3 +31,4 @@ Route::get('/negozio', [NegozioController::class, 'index']);
 Route::delete('/negozio/{id}', [NegozioController::class, 'destroy']);
 Route::delete('/magazzino/{id}', [MagazzinoController::class, 'destroy']);
 Route::post('/magazzino/{id}', [MagazzinoController::class, 'sposta']);
+Route::get('/aggiungiArticolo', [ArticoloController::class, 'create']);

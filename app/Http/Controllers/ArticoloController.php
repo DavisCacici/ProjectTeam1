@@ -23,7 +23,7 @@ class ArticoloController extends Controller
      */
     public function create()
     {
-        //
+        return view('AggiungiArticoli');
     }
 
     /**
