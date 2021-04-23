@@ -93,14 +93,6 @@
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
         <table id="table">
-            <tr class="table-primary">
-                <td id="td"><b>ID</b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" id="id" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
 
             <tr class="table-primary">
                 <td id="td"><b>LEAN</b></td>
