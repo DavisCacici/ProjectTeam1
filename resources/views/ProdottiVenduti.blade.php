@@ -112,8 +112,7 @@
                             @endforeach
                         @endif
                     @endforeach
-                    {{-- <td>{{$s->articolo_id}}</td>
-                    <td>{{}}</td> --}}
+                    <td>{{$s->data}}</td>
                 </tr>
             @endforeach
 
