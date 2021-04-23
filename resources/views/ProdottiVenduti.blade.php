@@ -94,6 +94,7 @@
                 <td id="td">LEAN</td>
                 <td id="td">SKU</td>
                 <td id="td">TIPOLOGIA</td>
+                <td id="td">MARCA</td>
                 <td id="td">DATA</td>
             </tr>
             {{-- ciclo i dati della tabella storico per averne in output l'elenco --}}
@@ -110,6 +111,12 @@
                                     <td>{{$t->nome}}</td>
                                 @endif
                             @endforeach
+                            @foreach ($marca as $m)
+                                @if ($a->marca_id == $m->id)
+                                    <td>{{$m->nome}}</td>
+                                @endif
+                            @endforeach
+
                         @endif
                     @endforeach
                     <td>{{$s->data}}</td>

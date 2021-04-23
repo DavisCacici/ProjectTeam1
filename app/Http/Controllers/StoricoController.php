@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\storico;
 use App\Models\articolo;
 use App\Models\tipologia;
+use App\Models\marca;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StoricoController extends Controller
 {
@@ -18,12 +20,26 @@ class StoricoController extends Controller
     {
         $storico = new storico;
         $storico = $storico->get();
-        $art = new articolo;
-        $art = $art->get();
         $tipo = new tipologia;
         $tipo = $tipo->get();
+        $marca = new marca;
+        $marca = $marca->get();
+        $art = new articolo;
+        $art = $art->get();
 
-        return view('ProdottiVenduti', compact('storico', 'art', 'tipo'));
+        // $query = DB::table('storicos')
+        // ->select('storicos.id', 'articolos.id', 'articolos.lean', 'articolos.sku', 'tipologias.nome', 'marcas.nome', 'storicos.data')
+        // ->from('storicos','articolos', 'tipologias', 'marcas')
+        // ->where('storicos.articolo_id', '=', 'articolos.id')
+        // ->where('articolos.tipologia_id', '=', 'tipologias.id')
+        // ->where('articolos.marcas_id', '=', 'marcas.id')
+        // ->get();
+
+
+
+
+
+        return view('ProdottiVenduti', compact('storico', 'art', 'tipo', 'marca'));
     }
 
     /**

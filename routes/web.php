@@ -32,3 +32,4 @@ Route::delete('/negozio/{id}', [NegozioController::class, 'destroy']);
 Route::delete('/magazzino/{id}', [MagazzinoController::class, 'destroy']);
 Route::post('/magazzino/{id}', [MagazzinoController::class, 'sposta']);
 Route::get('/aggiungiArticolo', [ArticoloController::class, 'create']);
+Route::post('/aggiungiArticolo', [ArticoloController::class, 'store']);

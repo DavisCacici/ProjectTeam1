@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\marca;
+use App\Models\articolo;
+use App\Models\magazzino;
+use App\Models\tipologia;
 
 class ArticoloController extends Controller
 {
@@ -34,8 +38,44 @@ class ArticoloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lean = $request -> input ('lean');
+        $sku = $request -> input ('sku');
+        $tipologia =  $request -> input ('tipologia');
+        $marca = $request -> input ('marca');
+        $descrizione = $request -> input ('descrizione');
+
+        $tip = new tipologia;
+        foreach($tip as $t)
+        {
+            if($tipologia == $t->nome)
+            {
+
+            }
+        }
+
+
+        $tip->create([
+            'nome'=>$tipologia
+        ]);
+
+        $mar = new marca;
+        $mar->create([
+            'nome'=>$marca
+        ]);
+
+        $art = new articolo;
+        $art->create([
+            'lean'=>$lean,
+            'sku'=>$sku,
+            'descrizione'=>$descrizione
+        ]);
+
+
+
+
+
     }
+
 
     /**
      * Display the specified resource.

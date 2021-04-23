@@ -93,54 +93,47 @@
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
         <table id="table">
+            <form method="POST" action="">
+                <tr class="table-primary">
+                    <td id="td"><b>LEAN</b></td>
+                    <td>
+                        <input type="text" name="lean" style="width: 250px">
+                    </td>
+                </tr>
 
-            <tr class="table-primary">
-                <td id="td"><b>LEAN</b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" lean="lean" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
+                <tr class="table-primary">
+                    <td id="td"><b>SKU</b></td>
+                    <td>
+                        <input type="text" name="sku" style="width: 250px">
+                    </td>
+                </tr>
 
-            <tr class="table-primary">
-                <td id="td"><b>SKU</b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" sku="sku" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
+                <tr class="table-primary">
+                    <td id="td"><b>TIPOLOGIA</b></td>
+                    <td>
+                        <input type="text" name="tipologia" style="width: 250px">
+                    </td>
+                </tr>
 
-            <tr class="table-primary">
-                <td id="td"><b>TIPOLOGIA</b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" tipoliga="tiplogia_id" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
-
-			<tr class="table-primary">
-                <td id="td"><b>MARCA</b></b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" tipoliga="tiplogia_id" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
+                <tr class="table-primary">
+                    <td id="td"><b>MARCA</b></b></td>
+                    <td>
+                        <input type="text" name="marca" style="width: 250px">
+                    </td>
+                </tr>
 
 
-            <tr class="table-primary">
-                <td id="td"><b>DESCRIZIONE</b></td>
-                <td>
-                    <form name="DatiArticolo" method="post" action="">
-                     <p><input type="text" des="descrizione" style="width: 250px"></p>
-                    </form>
-                </td>
-            </tr>
+                <tr class="table-primary">
+                    <td id="td"><b>DESCRIZIONE</b></td>
+                    <td>
+                        <input type="text" name="descrizione" style="width: 250px">
+                    </td>
+                </tr>
 
-            <th class="table-primary"><button type="submit" value="submit" action="" id="button">Aggiungi articolo</button></th>
+                <th class="table-primary">
+                    <button type="submit" value="submit" id="button">Aggiungi articolo</button>
+                </th>
+            </form>
         </table>
 
         <!-- Optional JavaScript -->

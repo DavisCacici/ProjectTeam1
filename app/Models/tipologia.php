@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class tipologia extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome', 'marca_id'];
+    protected $fillable = ['nome'];
 }
