@@ -8,6 +8,7 @@ use App\Models\articolo;
 use App\Models\magazzino;
 use App\Models\tipologia;
 use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
 
 class ArticoloController extends Controller
 {
@@ -53,6 +54,7 @@ class ArticoloController extends Controller
             if($t[1] == $tipologia)
             {
                 $tipologia_id = $t->id;
+                echo $tipologia_id;
                 $flag = false;
                 break;
             }
@@ -67,6 +69,7 @@ class ArticoloController extends Controller
                 if($t[1] == $tipologia)
                 {
                     $tipologia_id = $t->id;
+                    echo $tipologia_id;
                     break;
                 }
             }
@@ -81,6 +84,7 @@ class ArticoloController extends Controller
             if($marca == $m[1])
             {
                 $id_marca = $m->id;
+                echo $id_marca;
                 $flag2 = false;
                 break;
             }
@@ -95,6 +99,7 @@ class ArticoloController extends Controller
                 if($marca == $m[1])
                 {
                     $id_marca = $m->id;
+                    echo $id_marca;
                     break;
                 }
             }
