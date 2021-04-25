@@ -94,6 +94,7 @@
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
         <table id="table">
             <form method="POST" action="">
+                @csrf
                 <tr class="table-primary">
                     <td id="td"><b>LEAN</b></td>
                     <td>
