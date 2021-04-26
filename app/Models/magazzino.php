@@ -9,4 +9,9 @@ class magazzino extends Model
 {
     use HasFactory;
     protected $fillable = ['articolo_id'];
+
+    public function articolo()
+    {
+        return $this->belongsTo(articolo::class);
+    }
 }

@@ -29,7 +29,11 @@ class ArticoloController extends Controller
      */
     public function create()
     {
-        return view('AggiungiArticoli');
+
+        $tipologias = tipologia::get()->pluck('nome','id');
+        $marcas = marca::get()->pluck('nome','id');
+
+        return view('AggiungiArticoli', compact('tipologias','marcas'));
     }
 
     /**
@@ -40,91 +44,10 @@ class ArticoloController extends Controller
      */
     public function store(Request $request)
     {
-        $lean = $request -> input ('lean');
-        $sku = $request -> input ('sku');
-        $tipologia =  $request -> input ('tipologia');
-        $marca = $request -> input ('marca');
-        $descrizione = $request -> input ('descrizione');
 
-        $tip = new tipologia;
-        $flag = true;
-        $tipologia_id = 1;
-        foreach($tip as $t)
-        {
-            if($t[1] == $tipologia)
-            {
-                $tipologia_id = $t->id;
-                echo $tipologia_id;
-                $flag = false;
-                break;
-            }
-        }
-        if($flag)
-        {
-            $tip->create([
-                'nome'=>$tipologia
-            ]);
-            foreach($tip as $t)
-            {
-                if($t[1] == $tipologia)
-                {
-                    $tipologia_id = $t->id;
-                    echo $tipologia_id;
-                    break;
-                }
-            }
-        }
+        $articolo = new articolo;
+        $articolo::create($request->input("articolo"));
 
-
-        $mar = new marca;
-        $flag2 = true;
-        $id_marca = 1;
-        foreach($mar as $m)
-        {
-            if($marca == $m[1])
-            {
-                $id_marca = $m->id;
-                echo $id_marca;
-                $flag2 = false;
-                break;
-            }
-        }
-        if($flag2)
-        {
-            $mar->create([
-                'nome'=>$marca
-            ]);
-            foreach($mar as $m)
-            {
-                if($marca == $m[1])
-                {
-                    $id_marca = $m->id;
-                    echo $id_marca;
-                    break;
-                }
-            }
-        }
-
-
-        $art = new articolo;
-        $art->create([
-            'lean'=>$lean,
-            'sku'=>$sku,
-            'tipologia_id'=>$tipologia_id,
-            'marca_id'=>$id_marca,
-            'descrizione'=>$descrizione
-        ]);
-        $magazzino = new magazzino;
-        foreach($art as $a)
-        {
-            if($a[1] == $lean)
-            {
-                $magazzino->create([
-                    'articolo_id'=>$a->id
-                ]);
-                break;
-            }
-        }
         return redirect('/magazzino');
     }
 
