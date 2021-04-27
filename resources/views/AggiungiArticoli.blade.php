@@ -98,21 +98,21 @@
                 <tr class="table-primary">
                     <td id="td"><b>LEAN</b></td>
                     <td>
-                        <input type="text" name="articolo[lean]" style="width: 250px">
+                        <input type="text" name="lean" style="width: 250px">
                     </td>
                 </tr>
 
                 <tr class="table-primary">
                     <td id="td"><b>SKU</b></td>
                     <td>
-                        <input type="text" name="articolo[sku]" style="width: 250px">
+                        <input type="text" name="sku" style="width: 250px">
                     </td>
                 </tr>
 
                 <tr class="table-primary">
                     <td id="td"><b>TIPOLOGIA</b></td>
                     <td>
-                        <select name='articolo[tipologia_id]' style="width: 250px">
+                        <select name='tipologia_id' style="width: 250px">
                             <option value=""></option>
                             @foreach($tipologias as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
@@ -125,7 +125,7 @@
                 <tr class="table-primary">
                     <td id="td"><b>MARCA</b></b></td>
                     <td>
-                        <select name='articolo[marca_id]' style="width: 250px">
+                        <select name='marca_id' style="width: 250px">
                             <option value=""></option>
                             @foreach($marcas as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
@@ -140,7 +140,7 @@
                 <tr class="table-primary">
                     <td id="td"><b>DESCRIZIONE</b></td>
                     <td>
-                        <input type="text" name="articolo[descrizione]" style="width: 250px">
+                        <input type="text" name="descrizione" style="width: 250px">
                     </td>
                 </tr>
 

@@ -32,8 +32,8 @@ class ArticoloController extends Controller
 
         $tipologias = tipologia::get()->pluck('nome','id');
         $marcas = marca::get()->pluck('nome','id');
-
-        return view('AggiungiArticoli', compact('tipologias','marcas'));
+        $query = DB::select('select id from articolos where lean = ?', ['a']);
+        return view('AggiungiArticoli', compact('tipologias','marcas', 'query'));
     }
 
     /**
@@ -44,18 +44,33 @@ class ArticoloController extends Controller
      */
     public function store(Request $request)
     {
-        $lean = $request->input('articolo[lean]');
+        //nella prima parte prendiamo la tabella articolo
         $articolo = new articolo;
-        $articolo::create($request->input("articolo"));
+        //crea un nuovo elemento nella tabella articolo
+        $articolo::create([
+            'lean' => $request->input("lean"),
+            'sku'=>$request->input("sku"),
+            'tipologia_id'=>$request->input("tipologia_id"),
+            'marca_id'=>$request->input("marca_id"),
+            'descrizione'=>$request->input("descrizione"),
+        ]);
+        //prende l'elemento un elemento unico dalla richiesta per fare la query
+        //che ritornerà l'id necessario per inserire l'articolo appena
+        //creato anche all'interno la tabella magazzino
+        $lean = $request->input("lean");
         $magazzino = new magazzino;
-        $query = $articolo->where('lean', '=', $lean)->value('id');
-        dd($query);
-        // $magazzino::create([
-        //     'articolo_id'=>$query
-        // ]);
+        $query = DB::select('select id from articolos where lean = ?', [$lean]);
+        $arr = (object)$query[0];
+        // dd($arr->id);
 
-        // return redirect('/magazzino');
+        $magazzino::create([
+            'articolo_id'=>$arr->id
+        ]);
+        //infine il redirect ci riporta alla tabella magazzino dove potremo
+        //vedere l'elemnto appena creato
+        return redirect('/magazzino');
     }
+
 
 
     /**
