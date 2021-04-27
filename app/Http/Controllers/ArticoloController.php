@@ -44,11 +44,17 @@ class ArticoloController extends Controller
      */
     public function store(Request $request)
     {
-
+        $lean = $request->input('articolo[lean]');
         $articolo = new articolo;
         $articolo::create($request->input("articolo"));
+        $magazzino = new magazzino;
+        $query = $articolo->where('lean', '=', $lean)->value('id');
+        dd($query);
+        // $magazzino::create([
+        //     'articolo_id'=>$query
+        // ]);
 
-        return redirect('/magazzino');
+        // return redirect('/magazzino');
     }
 
 

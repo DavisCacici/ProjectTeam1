@@ -112,10 +112,12 @@
                 <tr class="table-primary">
                     <td id="td"><b>TIPOLOGIA</b></td>
                     <td>
-                        <select name='articolo[tipologia_id]'>
+                        <select name='articolo[tipologia_id]' style="width: 250px">
+                            <option value=""></option>
                             @foreach($tipologias as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
                             @endforeach
+                            <option value=""><a href="">Nuovo (+)</a></option>
                         </select>
                     </td>
                 </tr>
@@ -123,10 +125,13 @@
                 <tr class="table-primary">
                     <td id="td"><b>MARCA</b></b></td>
                     <td>
-                        <select name='articolo[marca_id]'>
+                        <select name='articolo[marca_id]' style="width: 250px">
+                            <option value=""></option>
                             @foreach($marcas as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
                             @endforeach
+                            <hr>
+                            <option value=""><a href="">Nuovo (+)</a></option>
                         </select>
                     </td>
                 </tr>
