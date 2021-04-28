@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\marca;
 use Illuminate\Http\Request;
 
 class MarcaController extends Controller
@@ -23,7 +24,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('AggiungiMarca');
     }
 
     /**
@@ -34,7 +35,11 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $marca = new marca;
+        $marca::create([
+            'articolo_id'=>$request->input('nome')
+        ]);
+        return redirect('/aggiungiArticolo');
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tipologia;
 use Illuminate\Http\Request;
 
 class TipologiaController extends Controller
@@ -23,7 +24,7 @@ class TipologiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('AggiungiTipologia');
     }
 
     /**
@@ -34,7 +35,11 @@ class TipologiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipologia = new tipologia;
+        $tipologia::create([
+            'articolo_id'=>$request->input('nome')
+        ]);
+        return redirect('/aggiungiArticolo');
     }
 
     /**

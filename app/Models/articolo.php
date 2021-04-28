@@ -20,8 +20,4 @@ class articolo extends Model
         return $this->belongsTo(marca::class);
     }
 
-    // public function queries($i)
-    // {
-    //     return $this->where('tipologia.nome', $i);
-    // }
 }

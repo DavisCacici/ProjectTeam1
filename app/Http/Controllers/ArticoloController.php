@@ -32,8 +32,7 @@ class ArticoloController extends Controller
 
         $tipologias = tipologia::get()->pluck('nome','id');
         $marcas = marca::get()->pluck('nome','id');
-        $query = DB::select('select id from articolos where lean = ?', ['a']);
-        return view('AggiungiArticoli', compact('tipologias','marcas', 'query'));
+        return view('AggiungiArticoli', compact('tipologias','marcas'));
     }
 
     /**
@@ -61,13 +60,13 @@ class ArticoloController extends Controller
         $magazzino = new magazzino;
         $query = DB::select('select id from articolos where lean = ?', [$lean]);
         $arr = (object)$query[0];
-        // dd($arr->id);
+        // dd($arr->id);id=>'29'
 
         $magazzino::create([
             'articolo_id'=>$arr->id
         ]);
         //infine il redirect ci riporta alla tabella magazzino dove potremo
-        //vedere l'elemnto appena creato
+        //vedere l'elemento appena creato
         return redirect('/magazzino');
     }
 

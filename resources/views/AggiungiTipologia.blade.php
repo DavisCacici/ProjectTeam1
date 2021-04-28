@@ -89,61 +89,20 @@
                 </div>
             </nav>
         </header>
-
-        <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
-        <a href="/aggiungiTipologia">Tipologia</a>
-        <a href="/aggiungiMarca">Marca</a>
+        <h1 style="align-content: center">Nuova Tipologia</h1>
+        <!-- questa tabella serve per inserire una nuova tipologia -->
         <table id="table">
             <form method="POST" action="">
                 @csrf
                 <tr class="table-primary">
-                    <td id="td"><b>LEAN</b></td>
+                    <td id="td"><b>Nome</b></td>
                     <td>
-                        <input type="text" name="lean" style="width: 250px">
-                    </td>
-                </tr>
-
-                <tr class="table-primary">
-                    <td id="td"><b>SKU</b></td>
-                    <td>
-                        <input type="text" name="sku" style="width: 250px">
-                    </td>
-                </tr>
-
-                <tr class="table-primary">
-                    <td id="td"><b>TIPOLOGIA</b></td>
-                    <td>
-                        <select name='tipologia_id' style="width: 250px">
-                            <option value=""></option>
-                            @foreach($tipologias as $k=>$v)
-                                <option value='{{$k}}'>{{$v}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-
-                <tr class="table-primary">
-                    <td id="td"><b>MARCA</b></b></td>
-                    <td>
-                        <select name='marca_id' style="width: 250px">
-                            <option value=""></option>
-                            @foreach($marcas as $k=>$v)
-                                <option value='{{$k}}'>{{$v}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-
-
-                <tr class="table-primary">
-                    <td id="td"><b>DESCRIZIONE</b></td>
-                    <td>
-                        <input type="text" name="descrizione" style="width: 250px">
+                        <input type="text" name="nome" style="width: 250px">
                     </td>
                 </tr>
 
                 <th class="table-primary">
-                    <button type="submit" value="submit" id="button">Aggiungi articolo</button>
+                    <button type="submit" value="submit" id="button">Aggiungi Tipologia</button>
                 </th>
             </form>
         </table>

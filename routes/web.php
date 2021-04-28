@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticoloController;
 use App\Http\Controllers\StoricoController;
 use App\Http\Controllers\MagazzinoController;
 use App\Http\Controllers\NegozioController;
+use App\Http\Controllers\TipologiaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,7 @@ Route::delete('/magazzino/{id}', [MagazzinoController::class, 'destroy']);
 Route::post('/magazzino/{id}', [MagazzinoController::class, 'sposta']);
 Route::get('/aggiungiArticolo', [ArticoloController::class, 'create']);
 Route::post('/aggiungiArticolo', [ArticoloController::class, 'store']);
+Route::get('/aggiungiTipologia',[TipologiaController::class, 'create']);
+Route::post('/aggiungiTipologia',[TipologiaController::class, 'store']);
+Route::get('/aggiungiMarca',[MarcaController::class, 'create']);
+Route::post('/aggiungiMarca',[MarcaController::class, 'store']);
