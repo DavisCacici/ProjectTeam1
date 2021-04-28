@@ -5,6 +5,7 @@ use App\Http\Controllers\StoricoController;
 use App\Http\Controllers\MagazzinoController;
 use App\Http\Controllers\NegozioController;
 use App\Http\Controllers\TipologiaController;
+use App\Http\Controllers\MarcaController;
 use Illuminate\Support\Facades\Route;
 
 /*
