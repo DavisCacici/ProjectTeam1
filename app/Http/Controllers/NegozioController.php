@@ -7,6 +7,7 @@ use App\Models\articolo;
 use App\Models\tipologia;
 use App\Models\marca;
 use App\Models\negozio;
+use App\Models\storico;
 
 class NegozioController extends Controller
 {
@@ -98,6 +99,21 @@ class NegozioController extends Controller
         $neg->delete();
 
         return redirect('/negozio');
+    }
+
+    public function venduto($id)
+    {
+        $neg = new negozio;
+        $storico = new storico;
+        $neg = $neg->find($id);
+
+        $storico->create([
+            'articolo_id' => $neg->articolo_id,
+            'data'=>date('Y/m/d')
+        ]);
+        $neg->delete();
+
+        return redirect('/storico');
     }
 
 }

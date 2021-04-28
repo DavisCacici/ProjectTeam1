@@ -131,6 +131,11 @@
                              @method('DELETE')
                              <button type="submit" class="btn btn-danger">elimina</button>
                          </form>
+                         <form method="POST" action="/negozio/{{$n->id}}">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="btn btn-primary">venduto</button>
+                        </form>
                      </td>
                  </tr>
              @endforeach

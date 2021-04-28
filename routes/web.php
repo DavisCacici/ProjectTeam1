@@ -39,3 +39,4 @@ Route::get('/aggiungiTipologia',[TipologiaController::class, 'create']);
 Route::post('/aggiungiTipologia',[TipologiaController::class, 'store']);
 Route::get('/aggiungiMarca',[MarcaController::class, 'create']);
 Route::post('/aggiungiMarca',[MarcaController::class, 'store']);
+Route::put('/negozio/{id}', [NegozioController::class, 'venduto']);
