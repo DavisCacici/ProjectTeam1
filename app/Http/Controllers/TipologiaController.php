@@ -37,7 +37,7 @@ class TipologiaController extends Controller
     {
         $tipologia = new tipologia;
         $tipologia::create([
-            'articolo_id'=>$request->input('nome')
+            'nome'=>$request->input('nome')
         ]);
         return redirect('/aggiungiArticolo');
     }

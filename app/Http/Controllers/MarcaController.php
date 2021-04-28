@@ -37,7 +37,7 @@ class MarcaController extends Controller
     {
         $marca = new marca;
         $marca::create([
-            'articolo_id'=>$request->input('nome')
+            'nome'=>$request->input('nome')
         ]);
         return redirect('/aggiungiArticolo');
     }
