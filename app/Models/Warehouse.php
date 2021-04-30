@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class magazzino extends Model
+class Warehouse extends Model
 {
     use HasFactory;
-    protected $fillable = ['articolo_id'];
+    protected $fillable = ['article_id'];
 
-    public function articolo()
+    public function article()
     {
-        return $this->belongsTo(articolo::class);
+        return $this->belongsTo(Article::class);
     }
 }

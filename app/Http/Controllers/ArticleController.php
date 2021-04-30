@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\marca;
-use App\Models\articolo;
-use App\Models\magazzino;
-use App\Models\tipologia;
+use App\Models\Brand;
+use App\Models\Article;
+use App\Models\Warehouse;
+use App\Models\Type;
 use Illuminate\Support\Facades\DB;
-use Mockery\Undefined;
 
-class ArticoloController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,8 +29,8 @@ class ArticoloController extends Controller
     public function create()
     {
 
-        $tipologias = tipologia::get()->pluck('nome','id');
-        $marcas = marca::get()->pluck('nome','id');
+        $tipologias = Type::get()->pluck('type','id');
+        $marcas = Brand::get()->pluck('brand','id');
         return view('AggiungiArticoli', compact('tipologias','marcas'));
     }
 
@@ -44,26 +43,26 @@ class ArticoloController extends Controller
     public function store(Request $request)
     {
         //nella prima parte prendiamo la tabella articolo
-        $articolo = new articolo;
+        $articolo = new Article;
         //crea un nuovo elemento nella tabella articolo
         $articolo::create([
-            'lean' => $request->input("lean"),
+            'ean' => $request->input("ean"),
             'sku'=>$request->input("sku"),
-            'tipologia_id'=>$request->input("tipologia_id"),
-            'marca_id'=>$request->input("marca_id"),
+            'type_id'=>$request->input("type_id"),
+            'brand_id'=>$request->input("brand_id"),
             'descrizione'=>$request->input("descrizione"),
         ]);
         //prende l'elemento un elemento unico dalla richiesta per fare la query
         //che ritornerà l'id necessario per inserire l'articolo appena
         //creato anche all'interno la tabella magazzino
-        $lean = $request->input("lean");
-        $magazzino = new magazzino;
-        $query = DB::select('select id from articolos where lean = ?', [$lean]);
+        $ean = $request->input("ean");
+        $magazzino = new Warehouse;
+        $query = DB::select('select id from articles where ean = ?', [$ean]);
         $arr = (object)$query[0];
         // dd($arr->id);id=>'29'
 
         $magazzino::create([
-            'articolo_id'=>$arr->id
+            'article_id'=>$arr->id
         ]);
         //infine il redirect ci riporta alla tabella magazzino dove potremo
         //vedere l'elemento appena creato

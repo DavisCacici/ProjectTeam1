@@ -95,9 +95,9 @@
             <form method="POST" action="">
                 @csrf
                 <tr class="table-primary">
-                    <td id="td"><b>Nome</b></td>
+                    <td id="td"><b>Tipo</b></td>
                     <td>
-                        <input type="text" name="nome" style="width: 250px">
+                        <input type="text" name="type" style="width: 250px">
                     </td>
                 </tr>
 

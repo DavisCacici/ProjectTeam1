@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMagazzinoTable extends Migration
+class CreateWarehousesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateMagazzinoTable extends Migration
      */
     public function up()
     {
-        Schema::create('magazzino', function (Blueprint $table) {
+        Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('articolo_id')->constrained('articoli');
+            $table->foreignId('article_id')->constrained('articles');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateMagazzinoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('magazzino');
+        Schema::dropIfExists('warehouses');
     }
 }

@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
-use App\Models\articolo;
-use App\Models\tipologia;
-use App\Models\marca;
-use App\Models\negozio;
-use App\Models\storico;
 
-class NegozioController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,17 +14,7 @@ class NegozioController extends Controller
      */
     public function index()
     {
-        $art = new articolo;
-        $art = $art->get();
-        //tip dati della tipologia
-        $tip = new tipologia;
-        $tip = $tip->get();
-        //mar dati della marca
-        $mar = new marca;
-        $mar = $mar->get();
-        $neg = new negozio;
-        $neg = $neg->get();
-        return view('negozio', compact('neg', 'art', 'tip', 'mar'));
+        //
     }
 
     /**
@@ -38,7 +24,7 @@ class NegozioController extends Controller
      */
     public function create()
     {
-        //
+        return view('AggiungiMarca');
     }
 
     /**
@@ -49,7 +35,11 @@ class NegozioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $marca = new Brand();
+        $marca::create([
+            'brand'=>$request->input('brand')
+        ]);
+        return redirect('/aggiungiArticolo');
     }
 
     /**
@@ -94,26 +84,6 @@ class NegozioController extends Controller
      */
     public function destroy($id)
     {
-        $neg = new negozio();
-        $neg = $neg->find($id);
-        $neg->delete();
-
-        return redirect('/negozio');
+        //
     }
-
-    public function venduto($id)
-    {
-        $neg = new negozio;
-        $storico = new storico;
-        $neg = $neg->find($id);
-
-        $storico->create([
-            'articolo_id' => $neg->articolo_id,
-            'data'=>date('Y/m/d')
-        ]);
-        $neg->delete();
-
-        return redirect('/storico');
-    }
-
 }

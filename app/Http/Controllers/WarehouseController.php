@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\storico;
-use App\Models\articolo;
-use App\Models\tipologia;
-use App\Models\marca;
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Warehouse;
+use App\Models\Type;
+use App\Models\Brand;
+use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 
-class StoricoController extends Controller
+class WarehouseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,28 +19,15 @@ class StoricoController extends Controller
      */
     public function index()
     {
-        $storico = new storico;
-        $storico = $storico->get();
-        $tipo = new tipologia;
-        $tipo = $tipo->get();
-        $marca = new marca;
-        $marca = $marca->get();
-        $art = new articolo;
-        $art = $art->get();
-
-        // $query = DB::table('storicos')
-        // ->select('storicos.id', 'articolos.id', 'articolos.lean', 'articolos.sku', 'tipologias.nome', 'marcas.nome', 'storicos.data')
-        // ->from('storicos','articolos', 'tipologias', 'marcas')
-        // ->where('storicos.articolo_id', '=', 'articolos.id')
-        // ->where('articolos.tipologia_id', '=', 'tipologias.id')
-        // ->where('articolos.marcas_id', '=', 'marcas.id')
-        // ->get();
-
-
-
-
-
-        return view('ProdottiVenduti', compact('storico', 'art', 'tipo', 'marca'));
+        $query = DB::select('SELECT warehouses.id, articles.ean, articles.sku, types.type,
+                                    brands.brand, articles.descrizione
+                            FROM warehouses, articles, types, brands
+                            WHERE warehouses.article_id = articles.id
+                            AND articles.type_id = types.id
+                            AND articles.brand_id = brands.id');
+        $query = (object)$query;
+        // dd($query);
+        return view('magazzino', compact('query'));
     }
 
     /**
@@ -105,6 +93,24 @@ class StoricoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mag = new Warehouse;
+        $mag = $mag->find($id);
+        $mag->delete();
+
+        return redirect('/magazzino');
+    }
+
+    public function sposta($id)
+    {
+        $neg = new Shop;
+        $mag = new Warehouse;
+        $mag = $mag->find($id);
+
+        $neg->create([
+            'article_id' => $mag->article_id
+        ]);
+        $mag->delete();
+
+        return redirect('/magazzino');
     }
 }

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\articolo;
-use App\Models\magazzino;
-use App\Models\tipologia;
-use App\Models\marca;
-use App\Models\negozio;
+use App\Models\Article;
+use App\Models\Type;
+use App\Models\Brand;
+use App\Models\Shop;
+use App\Models\Historic;
+use Illuminate\Support\Facades\DB;
 
-class MagazzinoController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +19,15 @@ class MagazzinoController extends Controller
      */
     public function index()
     {
-        //art dati articoli
-        $art = new articolo;
-        $art = $art->get();
-        //mag dati magazzino
-        $mag = new magazzino;
-        $mag = $mag->get();
-        //tip dati della tipologia
-        $tip = new tipologia;
-        $tip = $tip->get();
-        //mar dati della marca
-        $mar = new marca;
-        $mar = $mar->get();
-
-        return view('magazzino', compact('art', 'mag', 'tip', 'mar'));
+        $query = DB::select('SELECT shops.id, articles.ean, articles.sku,
+                                    types.type, brands.brand, articles.descrizione
+                            FROM shops, articles, types, brands
+                            WHERE shops.article_id = articles.id
+                            AND articles.type_id = types.id
+                            AND articles.brand_id = brands.id');
+        $query = (object)$query;
+        // dd($query);
+        return view('negozio', compact('query'));
     }
 
     /**
@@ -97,24 +93,26 @@ class MagazzinoController extends Controller
      */
     public function destroy($id)
     {
-        $mag = new magazzino;
-        $mag = $mag->find($id);
-        $mag->delete();
+        $neg = new Shop;
+        $neg = $neg->find($id);
+        $neg->delete();
 
-        return redirect('/magazzino');
+        return redirect('/negozio');
     }
 
-    public function sposta($id)
+    public function venduto($id)
     {
-        $neg = new negozio;
-        $mag = new magazzino;
-        $mag = $mag->find($id);
+        $neg = new Shop;
+        $storico = new Historic;
+        $neg = $neg->find($id);
 
-        $neg->create([
-            'articolo_id' => $mag->articolo_id
+        $storico->create([
+            'article_id' => $neg->article_id,
+            'date'=>date('Y/m/d')
         ]);
-        $mag->delete();
+        $neg->delete();
 
-        return redirect('/magazzino');
+        return redirect('/storico');
     }
+
 }

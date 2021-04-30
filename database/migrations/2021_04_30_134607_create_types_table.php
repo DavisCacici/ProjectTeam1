@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticoliTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateArticoliTable extends Migration
      */
     public function up()
     {
-        Schema::create('articoli', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
-            $table->string('lean')->unique();
-            $table->string('sku')->unique();
-            $table->foreignId('tipologia_id')->constrained('tipologia');
-            $table->foreignId('marca_id')->constrained('marca');
-            $table->string('descrizione');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -31,6 +27,6 @@ class CreateArticoliTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articoli');
+        Schema::dropIfExists('types');
     }
 }

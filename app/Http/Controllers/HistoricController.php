@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tipologia;
+use App\Models\Historic;
+use App\Models\Article;
+use App\Models\Type;
+use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class TipologiaController extends Controller
+class HistoricController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +18,16 @@ class TipologiaController extends Controller
      */
     public function index()
     {
-        //
+        $query = DB::select('SELECT historics.id, articles.ean, articles.sku, types.type,
+                                    brands.brand, articles.descrizione, historics.date
+                            FROM historics, articles, types, brands
+                            WHERE historics.article_id = articles.id
+                            AND articles.type_id = types.id
+                            AND articles.brand_id = brands.id');
+        $query = (object)$query;
+        // dd($query);
+        return view('ProdottiVenduti', compact('query'));
+
     }
 
     /**
@@ -24,7 +37,7 @@ class TipologiaController extends Controller
      */
     public function create()
     {
-        return view('AggiungiTipologia');
+        //
     }
 
     /**
@@ -35,11 +48,7 @@ class TipologiaController extends Controller
      */
     public function store(Request $request)
     {
-        $tipologia = new tipologia;
-        $tipologia::create([
-            'nome'=>$request->input('nome')
-        ]);
-        return redirect('/aggiungiArticolo');
+        //
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\marca;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
-class MarcaController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        return view('AggiungiMarca');
+        return view('AggiungiTipologia');
     }
 
     /**
@@ -35,9 +35,9 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        $marca = new marca;
-        $marca::create([
-            'nome'=>$request->input('nome')
+        $tipologia = new Type;
+        $tipologia::create([
+            'type'=>$request->input('type')
         ]);
         return redirect('/aggiungiArticolo');
     }

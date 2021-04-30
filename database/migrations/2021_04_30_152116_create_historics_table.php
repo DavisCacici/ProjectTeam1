@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipologiaTable extends Migration
+class CreateHistoricsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTipologiaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipologia', function (Blueprint $table) {
+        Schema::create('historics', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->foreignId('article_id')->constrained('articles');
+            $table->date('date');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTipologiaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipologia');
+        Schema::dropIfExists('historics');
     }
 }

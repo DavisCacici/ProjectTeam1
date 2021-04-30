@@ -98,47 +98,37 @@
              <!-- Metadati tabella-->
              <tr class="p-3 mb-2 bg-secondary text-white">
                 <td id="td">ID</td>
-                <td id="td">LEAN</td>
+                <td id="td">EAN</td>
                 <td id="td">SKU</td>
                 <td id="td">TIPOLOGIA</td>
                 <td id="td">MARCA</td>
+                <td id="td">DESCRIZIONE</td>
                 <td id="td">&nbsp</td>
             </tr>
              <!-- Qui andrà riportato il contenuto del Db Negozio-->
              <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
-             @foreach ($neg as $n)
-                 <tr>
-                     <td>{{$n->id}}</td>
-                     @foreach ($art as $a)
-                         @if ($n->articolo_id == $a->id)
-                             <td>{{$a->lean}}</td>
-                             <td>{{$a->sku}}</td>
-                             @foreach ($tip as $t)
-                                 @if ($a->tipologia_id == $t->id)
-                                     <td>{{$t->nome}}</td>
-                                 @endif
-                             @endforeach
-                             @foreach ($mar as $ma)
-                                     @if ($a->marca_id == $ma->id)
-                                         <td>{{$ma->nome}}</td>
-                                     @endif
-                             @endforeach
-                         @endif
-                     @endforeach
-                     <td class="bottton">
-                         <form method="POST" action="/negozio/{{$n->id}}">
-                             @csrf
-                             @method('DELETE')
-                             <button type="submit" class="btn btn-danger">elimina</button>
-                         </form>
-                         <form method="POST" action="/negozio/{{$n->id}}">
+             @foreach ($query as $q)
+                <tr>
+                    <td>{{$q->id}}</td>
+                    <td>{{$q->ean}}</td>
+                    <td>{{$q->sku}}</td>
+                    <td>{{$q->type}}</td>
+                    <td>{{$q->brand}}</td>
+                    <td>{{$q->descrizione}}</td>
+                    <td class="botton">
+                        <form method="POST" action="/negozio/{{$q->id}}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">elimina</button>
+                        </form>
+                        <form method="POST" action="/negozio/{{$q->id}}">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-primary">venduto</button>
                         </form>
-                     </td>
-                 </tr>
-             @endforeach
+                    </td>
+                </tr>
+            @endforeach
          </table>
 
          <!-- Optional JavaScript -->

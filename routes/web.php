@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\ArticoloController;
-use App\Http\Controllers\StoricoController;
-use App\Http\Controllers\MagazzinoController;
-use App\Http\Controllers\NegozioController;
-use App\Http\Controllers\TipologiaController;
-use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\HistoricController;
+use App\Http\Controllers\WarehouseController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,16 +27,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/storico', [StoricoController::class, 'index']);
-Route::get('/magazzino', [MagazzinoController::class, 'index']);
-Route::get('/negozio', [NegozioController::class, 'index']);
-Route::delete('/negozio/{id}', [NegozioController::class, 'destroy']);
-Route::delete('/magazzino/{id}', [MagazzinoController::class, 'destroy']);
-Route::post('/magazzino/{id}', [MagazzinoController::class, 'sposta']);
-Route::get('/aggiungiArticolo', [ArticoloController::class, 'create']);
-Route::post('/aggiungiArticolo', [ArticoloController::class, 'store']);
-Route::get('/aggiungiTipologia',[TipologiaController::class, 'create']);
-Route::post('/aggiungiTipologia',[TipologiaController::class, 'store']);
-Route::get('/aggiungiMarca',[MarcaController::class, 'create']);
-Route::post('/aggiungiMarca',[MarcaController::class, 'store']);
-Route::put('/negozio/{id}', [NegozioController::class, 'venduto']);
+Route::get('/storico', [HistoricController::class, 'index']);
+Route::get('/magazzino', [WarehouseController::class, 'index']);
+Route::get('/negozio', [ShopController::class, 'index']);
+Route::delete('/negozio/{id}', [ShopController::class, 'destroy']);
+Route::delete('/magazzino/{id}', [WarehouseController::class, 'destroy']);
+Route::post('/magazzino/{id}', [WarehouseController::class, 'sposta']);
+Route::get('/aggiungiArticolo', [ArticleController::class, 'create']);
+Route::post('/aggiungiArticolo', [ArticleController::class, 'store']);
+Route::get('/aggiungiTipologia',[TypeController::class, 'create']);
+Route::post('/aggiungiTipologia',[TypeController::class, 'store']);
+Route::get('/aggiungiMarca',[BrandController::class, 'create']);
+Route::post('/aggiungiMarca',[BrandController::class, 'store']);
+Route::put('/negozio/{id}', [ShopController::class, 'venduto']);

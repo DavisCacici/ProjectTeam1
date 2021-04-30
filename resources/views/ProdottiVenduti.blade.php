@@ -91,37 +91,25 @@
         <table id="table">
             <tr class="p-3 mb-2 bg-secondary text-white">
                 <td id="td">ID</td>
-                <td id="td">LEAN</td>
+                <td id="td">EAN</td>
                 <td id="td">SKU</td>
                 <td id="td">TIPOLOGIA</td>
                 <td id="td">MARCA</td>
+                <td id="td">DESCRIZIONE</td>
                 <td id="td">DATA</td>
             </tr>
             {{-- ciclo i dati della tabella storico per averne in output l'elenco --}}
-            @foreach ($storico as $s)
-                <tr>
-                    <td>{{$s->id}}</td>
-                    {{-- ciclo i dati articolo per poi fare un if per la corrispondenza della chiave esterna --}}
-                    @foreach ($art as $a)
-                        @if ($s->articolo_id == $a->id)
-                            <td>{{$a->lean}}</td>
-                            <td>{{$a->sku}}</td>
-                            @foreach ($tipo as $t)
-                                @if ($a->tipologia_id == $t->id)
-                                    <td>{{$t->nome}}</td>
-                                @endif
-                            @endforeach
-                            @foreach ($marca as $m)
-                                @if ($a->marca_id == $m->id)
-                                    <td>{{$m->nome}}</td>
-                                @endif
-                            @endforeach
-
-                        @endif
-                    @endforeach
-                    <td>{{$s->data}}</td>
-                </tr>
-            @endforeach
+            @foreach ($query as $q)
+            <tr>
+                <td>{{$q->id}}</td>
+                <td>{{$q->ean}}</td>
+                <td>{{$q->sku}}</td>
+                <td>{{$q->type}}</td>
+                <td>{{$q->brand}}</td>
+                <td>{{$q->descrizione}}</td>
+                <td>{{$q->date}}</td>
+            </tr>
+        @endforeach
 
         </table>
 

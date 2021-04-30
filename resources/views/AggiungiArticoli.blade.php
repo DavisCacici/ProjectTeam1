@@ -97,9 +97,9 @@
             <form method="POST" action="">
                 @csrf
                 <tr class="table-primary">
-                    <td id="td"><b>LEAN</b></td>
+                    <td id="td"><b>EAN</b></td>
                     <td>
-                        <input type="text" name="lean" style="width: 250px">
+                        <input type="text" name="ean" style="width: 250px">
                     </td>
                 </tr>
 
@@ -113,7 +113,7 @@
                 <tr class="table-primary">
                     <td id="td"><b>TIPOLOGIA</b></td>
                     <td>
-                        <select name='tipologia_id' style="width: 250px">
+                        <select name='type_id' style="width: 250px">
                             <option value=""></option>
                             @foreach($tipologias as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
@@ -125,7 +125,7 @@
                 <tr class="table-primary">
                     <td id="td"><b>MARCA</b></b></td>
                     <td>
-                        <select name='marca_id' style="width: 250px">
+                        <select name='brand_id' style="width: 250px">
                             <option value=""></option>
                             @foreach($marcas as $k=>$v)
                                 <option value='{{$k}}'>{{$v}}</option>
@@ -133,6 +133,7 @@
                         </select>
                     </td>
                 </tr>
+
 
 
                 <tr class="table-primary">
