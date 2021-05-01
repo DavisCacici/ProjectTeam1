@@ -101,7 +101,7 @@
                     @csrf
                     @method('PUT')
                     <input type="text" name="ricerca">
-                    <button type="submit" id='refresh' class="btn btn-outline-primary">cerca</button>
+                    <button type="submit" class="btn btn-outline-primary">cerca</button>
                 </form>
             </div>
         </div>
