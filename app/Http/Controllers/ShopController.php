@@ -115,4 +115,31 @@ class ShopController extends Controller
         return redirect('/storico');
     }
 
+    public function cerca(Request $request)
+    {
+        $conteggio = 0;
+        $cerca = (string)$request->input('ricerca');
+        $query = DB::select('SELECT COUNT(shops.id) conta, shops.id, articles.ean, articles.sku, types.type, brands.brand, articles.descrizione
+                             FROM shops, articles, types, brands
+                             WHERE shops.article_id = articles.id
+                             AND articles.type_id = types.id
+                             AND articles.brand_id = brands.id
+                             AND (types.type LIKE ?
+                             OR brands.brand LIKE ?
+                             OR articles.sku LIKE ?
+                             OR articles.ean LIKE ?
+                             OR articles.descrizione LIKE ?)
+                             GROUP BY shops.id', [$cerca, $cerca, $cerca, $cerca, $cerca]);
+
+        $query = (object)($query);
+        foreach($query as $q)
+        {
+            $conteggio += $q->conta;
+        }
+
+
+        return view('ricerca', compact('query', 'conteggio'));
+
+    }
+
 }

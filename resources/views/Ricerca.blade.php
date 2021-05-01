@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <title> Magazzino</title>
+        <title>Ricerca</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -92,19 +92,8 @@
                 </div>
             </nav>
         </header>
-        <div class="row">
-            <div class="col">
-                <label id="label"><h1>Magazzino</h1></label>
-            </div>
-            <div class="col">
-                <form method="POST" action="/magazzino">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="ricerca">
-                    <button type="submit" id='refresh' class="btn btn-outline-primary">cerca</button>
-                </form>
-            </div>
-        </div>
+
+        <h3 style="text-align: center">Totale Prodotti trovati: {{$conteggio}}</h3>
 
         <table id="table">
             <!-- Metadati tabella-->
@@ -115,10 +104,7 @@
                 <td id="td">TIPOLOGIA</td>
                 <td id="td">MARCA</td>
                 <td id="td">DESCRIZIONE</td>
-                <td id="td">&nbsp</td>
             </tr>
-            <!--Qui andrà riportato il contenuto del Db Magazzino-->
-            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
 
             @foreach ($query as $q)
                 <tr>
@@ -128,17 +114,6 @@
                     <td>{{$q->type}}</td>
                     <td>{{$q->brand}}</td>
                     <td>{{$q->descrizione}}</td>
-                    <td class="botton">
-                        <form method="POST" action="/magazzino/{{$q->id}}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">elimina</button>
-                        </form>
-                        <form method="POST" action="/magazzino/{{$q->id}}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">sposta</button>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
         </table>

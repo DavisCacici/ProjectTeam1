@@ -93,7 +93,19 @@
         </header>
 
          <!--Tabella Negozio-->
-         <label id="label"><h1>Negozio</h1></label>
+         <div class="row">
+            <div class="col">
+                <label id="label"><h1>Negozio</h1></label>
+            </div>
+            <div class="col">
+                <form method="POST" action="/negozio">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="ricerca">
+                    <button type="submit" id='refresh' class="btn btn-outline-primary">cerca</button>
+                </form>
+            </div>
+        </div>
          <table id="table">
              <!-- Metadati tabella-->
              <tr class="p-3 mb-2 bg-secondary text-white">
@@ -123,7 +135,6 @@
                         </form>
                         <form method="POST" action="/negozio/{{$q->id}}">
                             @csrf
-                            @method('PUT')
                             <button type="submit" class="btn btn-primary">venduto</button>
                         </form>
                     </td>
