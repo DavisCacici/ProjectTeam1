@@ -93,15 +93,7 @@
         </header>
         <div class="row">
             <div class="col">
-                <label class="label"><h1>Magazzino</h1></label>
-            </div>
-            <div class="col cerca">
-                <form method="POST" action="/magazzino">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="ricerca" style="height: 35px">
-                    <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
-                </form>
+             <h3 style="text-align: center">Totale Prodotti trovati: {{$conteggio}}</h3>
             </div>
         </div>
 
@@ -114,7 +106,6 @@
                 <th scope="col" style="width: 110px">TIPOLOGIA</th>
                 <th scope="col" style="width: 110px">MARCA</th>
                 <th scope="col" style="width: 110px">DESCRIZIONE</th>
-                <th scope="col"style="width: 110px">&nbsp</th>
               </tr>
             </thead>
 
@@ -126,17 +117,6 @@
                     <td>{{$q->type}}</td>
                     <td>{{$q->brand}}</td>
                     <td>{{$q->descrizione}}</td>
-                    <td class="botton">
-                        <form method="POST" action="/magazzino/{{$q->id}}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">elimina</button>
-                        </form>
-                        <form method="POST" action="/magazzino/{{$q->id}}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">sposta&nbsp</button>
-                        </form>
-                    </td>
                 </tr>
             @endforeach
         </table>
@@ -148,4 +128,3 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>
-

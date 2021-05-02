@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <title> Prodotti venduti</title>
+        <title> Prootti venduti</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,24 +12,28 @@
     </head>
 
     <style>
-        #table{
-            text-align:left;
-            border: 2px solid black;
-            margin-left: 20%;
-            margin-right: 20%;
-            border-spacing: 3px;
-            border-collapse: separate;
+        .label{
+            text-align: left;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-left: 4%;
         }
 
-        #label{
-            position: relative;
-            margin-left: 20%;
-            margin-right: 20%;
+        .table{
+            width: 96%;
+            margin-right: 2%;
+            margin-left: 2%;
         }
 
-        #td{
-            height:30px;
-            width: 170px;
+        .botton{
+            display: flex;
+        }
+
+        .cerca{
+            text-align: right;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-right: 2%;
         }
     </style>
 
@@ -87,17 +91,33 @@
                 </div>
             </nav>
         </header>
-        <label id="label"><h1>Prodotti venduti</h1></label>
-        <table id="table">
-            <tr class="p-3 mb-2 bg-secondary text-white">
-                <td id="td">ID</td>
-                <td id="td">EAN</td>
-                <td id="td">SKU</td>
-                <td id="td">TIPOLOGIA</td>
-                <td id="td">MARCA</td>
-                <td id="td">DESCRIZIONE</td>
-                <td id="td">DATA</td>
-            </tr>
+        <div class="row">
+            <div class="col">
+                <label class="label"><h1>Prodotti venduti </h1></label>
+            </div>
+            <div class="col cerca">
+                <form method="POST" action="/magazzino">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="ricerca" style="height: 35px">
+                    <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
+                </form>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="width: 80px">ID</th>
+                <th scope="col" style="width: 110px" >LEAN</th>
+                <th scope="col" style="width: 110px">SKU</th>
+                <th scope="col" style="width: 110px">TIPOLOGIA</th>
+                <th scope="col" style="width: 110px">MARCA</th>
+                <th scope="col" style="width: 110px">DESCRIZIONE</th>
+                <th scope="col"style="width: 110px">DATA</th>
+              </tr>
+            </thead>
+
             {{-- ciclo i dati della tabella storico per averne in output l'elenco --}}
             @foreach ($query as $q)
             <tr>

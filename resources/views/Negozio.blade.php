@@ -12,28 +12,28 @@
     </head>
 
     <style>
-        #table{
-            text-align:left;
-            border: 2px solid black;
-            margin-left: 20%;
-            margin-right: 20%;
-            border-spacing: 3px;
-            border-collapse: separate;
+        .label{
+            text-align: left;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-left: 4%;
         }
 
-        #label{
-            position: relative;
-            margin-left: 20%;
-            margin-right: 20%;
-        }
-
-        #td{
-            height:30px;
-            width: 170px;
+        .table{
+            width: 96%;
+            margin-right: 2%;
+            margin-left: 2%;
         }
 
         .botton{
             display: flex;
+        }
+
+        .cerca{
+            text-align: right;
+            margin-top: 1%;
+            margin-bottom: 1%;
+            margin-right: 2%;
         }
     </style>
 
@@ -91,22 +91,33 @@
                 </div>
             </nav>
         </header>
+        <div class="row">
+            <div class="col">
+                <label class="label"><h1>Negozio</h1></label>
+            </div>
+            <div class="col cerca">
+                <form method="POST" action="/negozio">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="ricerca" style="height: 35px">
+                    <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
+                </form>
+            </div>
+        </div>
 
-         <!--Tabella Negozio-->
-         <label id="label"><h1>Negozio</h1></label>
-         <table id="table">
-             <!-- Metadati tabella-->
-             <tr class="p-3 mb-2 bg-secondary text-white">
-                <td id="td">ID</td>
-                <td id="td">EAN</td>
-                <td id="td">SKU</td>
-                <td id="td">TIPOLOGIA</td>
-                <td id="td">MARCA</td>
-                <td id="td">DESCRIZIONE</td>
-                <td id="td">&nbsp</td>
-            </tr>
-             <!-- Qui andrà riportato il contenuto del Db Negozio-->
-             <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" style="width: 80px">ID</th>
+                <th scope="col" style="width: 110px" >LEAN</th>
+                <th scope="col" style="width: 110px">SKU</th>
+                <th scope="col" style="width: 110px">TIPOLOGIA</th>
+                <th scope="col" style="width: 110px">MARCA</th>
+                <th scope="col" style="width: 110px">DESCRIZIONE</th>
+                <th scope="col"style="width: 110px">&nbsp</th>
+              </tr>
+            </thead>
+
              @foreach ($query as $q)
                 <tr>
                     <td>{{$q->id}}</td>
@@ -123,14 +134,12 @@
                         </form>
                         <form method="POST" action="/negozio/{{$q->id}}">
                             @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-primary">venduto</button>
+                            <button type="submit"  class="btn btn-primary">venduto</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
          </table>
-
          <!-- Optional JavaScript -->
          <!-- jQuery first, then Popper.js, then Bootstrap JS -->
          <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

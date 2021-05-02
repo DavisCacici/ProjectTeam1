@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Article;
 use App\Models\Warehouse;
-use App\Models\Type;
-use App\Models\Brand;
 use App\Models\Shop;
 use Illuminate\Support\Facades\DB;
 
@@ -112,5 +109,32 @@ class WarehouseController extends Controller
         $mag->delete();
 
         return redirect('/magazzino');
+    }
+
+    public function cerca(Request $request)
+    {
+        $conteggio = 0;
+        $cerca = (string)$request->input('ricerca');
+        $query = DB::select('SELECT COUNT(warehouses.id) conta, warehouses.id, articles.ean, articles.sku, types.type, brands.brand, articles.descrizione
+                             FROM warehouses, articles, types, brands
+                             WHERE warehouses.article_id = articles.id
+                             AND articles.type_id = types.id
+                             AND articles.brand_id = brands.id
+                             AND (types.type LIKE ?
+                             OR brands.brand LIKE ?
+                             OR articles.sku LIKE ?
+                             OR articles.ean LIKE ?
+                             OR articles.descrizione LIKE ?)
+                             GROUP BY warehouses.id', [$cerca, $cerca, $cerca, $cerca, $cerca]);
+
+        $query = (object)($query);
+        foreach($query as $q)
+        {
+            $conteggio += $q->conta;
+        }
+
+
+        return view('ricerca', compact('query', 'conteggio'));
+
     }
 }
