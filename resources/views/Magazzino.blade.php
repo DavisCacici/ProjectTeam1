@@ -12,25 +12,9 @@
     </head>
 
     <style>
-
-        #table{
-            text-align:left;
-            border: 2px solid black;
-            margin-left: 20%;
-            margin-right: 20%;
-            border-spacing: 3px;
-            border-collapse: separate;
-        }
-
         #label{
-            position: relative;
-            margin-left: 20%;
-            margin-right: 20%;
-        }
-
-        #td{
-            height:30px;
-            width: 170px;
+            position: ;
+            text-align: center;
         }
 
         .botton{
@@ -94,19 +78,19 @@
         </header>
 
         <label id="label"><h1>Magazzino</h1></label>
-        <table id="table">
-            <!-- Metadati tabella-->
-            <tr class="p-3 mb-2 bg-secondary text-white">
-                <td id="td">ID</td>
-                <td id="td">EAN</td>
-                <td id="td">SKU</td>
-                <td id="td">TIPOLOGIA</td>
-                <td id="td">MARCA</td>
-                <td id="td">DESCRIZIONE</td>
-                <td id="td">&nbsp</td>
-            </tr>
-            <!--Qui andrà riportato il contenuto del Db Magazzino-->
-            <!--Inoltre l'ultima cella della tabella gli vanno aggiunti i bottoni elimina e sposta -->
+
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="row" style="width: 80px">ID</th>
+                <th scope="row" style="width: 100px">LEAN</th>
+                <th scope="row" style="width: 100px">SKU</th>
+                <th scope="row" style="width: 100px">TIPOLOGIA</th>
+                <th scope="row" style="width: 100px">MARCA</th>
+                <th scope="row" style="width: 100px">DESCRIZIONE</th>
+                <th scope="row" style="width: 60px">&nbsp</th>
+              </tr>
+            </thead>
 
             @foreach ($query as $q)
                 <tr>
