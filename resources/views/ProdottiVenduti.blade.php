@@ -91,7 +91,6 @@
                 </div>
             </nav>
         </header>
-<<<<<<< HEAD
         <div class="row">
             <div class="col">
                 <label class="label"><h1>Prodotti venduti </h1></label>
@@ -109,8 +108,8 @@
         <table class="table">
             <thead class="thead-dark">
               <tr>
-                <th scope="col" style="width: 80px">ID</th>
-                <th scope="col" style="width: 110px" >LEAN</th>
+                {{-- <th scope="col" style="width: 80px">ID</th> --}}
+                <th scope="col" style="width: 110px" >EAN</th>
                 <th scope="col" style="width: 110px">SKU</th>
                 <th scope="col" style="width: 110px">TIPOLOGIA</th>
                 <th scope="col" style="width: 110px">MARCA</th>
@@ -119,19 +118,6 @@
               </tr>
             </thead>
 
-=======
-        <label id="label"><h1>Prodotti venduti</h1></label>
-        <table id="table">
-            <tr class="p-3 mb-2 bg-secondary text-white">
-                {{-- <td id="td">ID</td> --}}
-                <td id="td">EAN</td>
-                <td id="td">SKU</td>
-                <td id="td">TIPOLOGIA</td>
-                <td id="td">MARCA</td>
-                <td id="td">DESCRIZIONE</td>
-                <td id="td">DATA</td>
-            </tr>
->>>>>>> 516a71f3fbbec421238f0386232dd30a06e1b2b0
             {{-- ciclo i dati della tabella storico per averne in output l'elenco --}}
             @foreach ($query as $q)
             <tr>
