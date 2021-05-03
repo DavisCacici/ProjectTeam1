@@ -98,7 +98,7 @@
         <table id="table">
             <!-- Metadati tabella-->
             <tr class="p-3 mb-2 bg-secondary text-white">
-                <td id="td">ID</td>
+                {{-- <td id="td">ID</td> --}}
                 <td id="td">EAN</td>
                 <td id="td">SKU</td>
                 <td id="td">TIPOLOGIA</td>
@@ -108,7 +108,7 @@
 
             @foreach ($query as $q)
                 <tr>
-                    <td>{{$q->id}}</td>
+                    {{-- <td>{{$q->id}}</td> --}}
                     <td>{{$q->ean}}</td>
                     <td>{{$q->sku}}</td>
                     <td>{{$q->type}}</td>
