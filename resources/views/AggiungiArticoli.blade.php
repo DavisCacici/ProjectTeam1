@@ -88,8 +88,6 @@
         <a href="/aggiungiTipologia">Tipologia</a>
         <a href="/aggiungiMarca">Marca</a>
 
-
-
         <div class="container">
             <form method="POST" action="">
                 @csrf
@@ -111,38 +109,15 @@
                             </div>
                             <br>
 
-                            <tr class="table-primary">
-                                <td id="td"><b>TIPOLOGIA</b></td>
-                                <td>
-                                    <select name='type_id' style="width: 250px" placeholder="sku">
-                                        <option value=""></option>
-                                        @foreach($tipologias as $k=>$v)
-                                            <option value='{{$k}}'>{{$v}}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                            </tr>
-
-
-
-
-
-
-
                             <div class="form-group">
                                 <div class="left-inner-addon">
-                                    <i class="glyphicon glyphicon-user">
-                                        <input class="form-control focus" type="text" placeholder="sku" name="Sku">
-
-                                            <select name='type_id'>
-                                                <option value=""></option>
-                                                    @foreach($tipologias as $k=>$v)
-                                                        <option value='{{$k}}'>{{$v}}</option>
-                                                    @endforeach
-                                            </select>
-                                    </i>
-
-
+                                    <i class="glyphicon glyphicon-user"></i>
+                                        <select name='type_id'placeholder="tipologia" class="form-control focus">
+                                            <option selected value="">Tipologia</option>
+                                            @foreach($tipologias as $k=>$v)
+                                            <option value='{{$k}}'>{{$v}}</option>
+                                        @endforeach
+                                        </select>
                                 </div>
                             </div>
                             <br>
@@ -150,13 +125,12 @@
                             <div class="form-group">
                                 <div class="left-inner-addon">
                                     <i class="glyphicon glyphicon-user"></i>
-                                    <select name='type_id' style="width: 250px">
-                                        <option value=""></option>
-                                        @foreach($tipologias as $k=>$v)
+                                        <select name='type_id'placeholder="marca" class="form-control focus">
+                                            <option selected value="">Marca</option>
+                                            @foreach($marcas as $k=>$v)
                                             <option value='{{$k}}'>{{$v}}</option>
-                                        @endforeach
-                                    <input class="form-control focus" type="text" placeholder="marca" name="Marca">
-                                    </select>
+                                            @endforeach
+                                        </select>
                                 </div>
                             </div>
                             <br>
@@ -170,33 +144,11 @@
                             <br>
 
 
-                <tr class="table-primary">
-                    <td id="td"><b>TIPOLOGIA</b></td>
-                    <td>
-                        <select name='type_id' style="width: 250px">
-                            <option value=""></option>
-                            @foreach($tipologias as $k=>$v)
-                                <option value='{{$k}}'>{{$v}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
+                        <div class="button">
+                            <button class="btn btn-info" type="submit" id="button">Aggiungi Articolo</button>
+                        </div>
 
-                <tr class="table-primary">
-                    <td id="td"><b>MARCA</b></b></td>
-                    <td>
-                        <select name='brand_id' style="width: 250px">
-                            <option value=""></option>
-                            @foreach($marcas as $k=>$v)
-                                <option value='{{$k}}'>{{$v}}</option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
 
-                <th class="table-primary">
-                    <button type="submit" value="submit" id="button">Aggiungi articolo</button>
-                </th>
             </form>
 
 

@@ -17,9 +17,8 @@
     <style>
 
         .container{
-            margin-top: 2%;
-            margin-left: 30%;
-
+            width: 500px;
+            height:500px;
         }
 
         .form-group{
@@ -28,7 +27,8 @@
         }
 
         .button{
-            margin-left: 42%;
+            width:500px;
+            text-align:center;
         }
     </style>
 

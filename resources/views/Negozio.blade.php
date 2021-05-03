@@ -35,6 +35,14 @@
             margin-bottom: 1%;
             margin-right: 2%;
         }
+
+        .th{
+            width: 96%;
+        }
+
+        .td{
+            width: 200px;
+        }
     </style>
 
     <body>
@@ -105,16 +113,16 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table th">
             <thead class="thead-dark">
               <tr>
                 {{-- <th scope="col" style="width: 80px">ID</th> --}}
-                <th scope="col" style="width: 110px" >EAN</th>
-                <th scope="col" style="width: 110px">SKU</th>
-                <th scope="col" style="width: 110px">TIPOLOGIA</th>
-                <th scope="col" style="width: 110px">MARCA</th>
-                <th scope="col" style="width: 110px">DESCRIZIONE</th>
-                <th scope="col"style="width: 110px">&nbsp</th>
+                <th scope="col">EAN</th>
+                <th scope="col">SKU</th>
+                <th scope="col">TIPOLOGIA</th>
+                <th scope="col">MARCA</th>
+                <th scope="col">DESCRIZIONE</th>
+                <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>
 
