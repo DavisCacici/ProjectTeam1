@@ -91,6 +91,7 @@
                 </div>
             </nav>
         </header>
+<<<<<<< HEAD
         <div class="row">
             <div class="col">
              <h3 style="text-align: center">Totale Prodotti trovati: {{$conteggio}}</h3>
@@ -108,10 +109,25 @@
                 <th scope="col" style="width: 110px">DESCRIZIONE</th>
               </tr>
             </thead>
+=======
+
+        <h3 style="text-align: center">Totale Prodotti trovati: {{$conteggio}}</h3>
+
+        <table id="table">
+            <!-- Metadati tabella-->
+            <tr class="p-3 mb-2 bg-secondary text-white">
+                {{-- <td id="td">ID</td> --}}
+                <td id="td">EAN</td>
+                <td id="td">SKU</td>
+                <td id="td">TIPOLOGIA</td>
+                <td id="td">MARCA</td>
+                <td id="td">DESCRIZIONE</td>
+            </tr>
+>>>>>>> 516a71f3fbbec421238f0386232dd30a06e1b2b0
 
             @foreach ($query as $q)
                 <tr>
-                    <td>{{$q->id}}</td>
+                    {{-- <td>{{$q->id}}</td> --}}
                     <td>{{$q->ean}}</td>
                     <td>{{$q->sku}}</td>
                     <td>{{$q->type}}</td>
