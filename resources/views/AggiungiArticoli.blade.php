@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <div class="left-inner-addon">
                                     <i class="glyphicon glyphicon-user"></i>
-                                    <input class="form-control focus" type="text" placeholder="lean" name="Lean">
+                                    <input class="form-control focus" type="text" placeholder="ean" name="ean">
                                 </div>
                             </div>
                             <br>
@@ -104,7 +104,7 @@
                             <div class="form-group">
                                 <div class="left-inner-addon">
                                     <i class="glyphicon glyphicon-user"></i>
-                                    <input class="form-control focus" type="text" placeholder="sku" name="Sku">
+                                    <input class="form-control focus" type="text" placeholder="sku" name="sku">
                                 </div>
                             </div>
                             <br>
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <div class="left-inner-addon">
                                     <i class="glyphicon glyphicon-user"></i>
-                                        <select name='type_id'placeholder="marca" class="form-control focus">
+                                        <select name='brand_id'placeholder="marca" class="form-control focus">
                                             <option selected value="">Marca</option>
                                             @foreach($marcas as $k=>$v)
                                             <option value='{{$k}}'>{{$v}}</option>
