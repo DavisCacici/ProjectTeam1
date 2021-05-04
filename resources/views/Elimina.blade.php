@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="it">
     <head>
-        <title> Magazzino</title>
+        <title> Elimina</title>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -99,57 +99,14 @@
                 </div>
             </nav>
         </header>
-        <div class="row">
-            <div class="col">
-                <label class="label"><h1>Magazzino</h1></label>
-            </div>
-            <div class="col cerca">
-                <form method="POST" action="/magazzino">
-                    @csrf
-                    @method('PUT')
-                    <input type="text" name="ricerca" style="height: 35px">
-                    <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
-                </form>
-            </div>
-        </div>
+        <main>
 
-        <table class="table th">
-            <thead class="thead-dark">
-              <tr>
-                {{-- <th scope="col" style="width: 80px">ID</th> --}}
-                <th scope="col">EAN</th>
-                <th scope="col">SKU</th>
-                <th scope="col">DESCRIZIONE</th>
-                <th scope="col">QUANTITA'</th>
-                <th scope="col" class="td">&nbsp</th>
-              </tr>
-            </thead>
+            <form method="POST" action="/elimina/{{$id}}/{{$quantita}}">
+                @csrf
+                @method('DELETE')
+                <p>Quantità disponibile {{$quantita}}</p>
+                <input type="text" name="numero"/>
+                <button type="submit" class="btn btn-danger">elimina</button>
+            </form>
 
-            @foreach ($query as $q)
-                <tr>
-                    <td>{{$q->ean}}</td>
-                    <td>{{$q->sku}}</td>
-                    <td>{{$q->descrizione}}</td>
-                    <td>{{$q->quantita}}</td>
-                    <td class="botton td">
-                        <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">elimina</button>
-                        </form>
-                        <form method="POST" action="/magazzino/{{$q->id}}">
-                            @csrf
-                            <button type="submit" class="btn btn-primary">sposta&nbsp</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </table>
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
-</html>
-
+        </main>

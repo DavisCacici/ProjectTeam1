@@ -2,10 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HistoricController;
-use App\Http\Controllers\WarehouseController;
-use App\Http\Controllers\ShopController;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\BrandController;
+use App\Http\Controllers\LogisticController;
+use App\Models\Logistic;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,19 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/storico', [HistoricController::class, 'index']);
-Route::get('/aggiungiArticolo', [ArticleController::class, 'create']);
-Route::post('/aggiungiArticolo', [ArticleController::class, 'store']);
-Route::get('/aggiungiTipologia',[TypeController::class, 'create']);
-Route::post('/aggiungiTipologia',[TypeController::class, 'store']);
-Route::get('/aggiungiMarca',[BrandController::class, 'create']);
-Route::post('/aggiungiMarca',[BrandController::class, 'store']);
-Route::get('/magazzino', [WarehouseController::class, 'index']);
-Route::delete('/magazzino/{id}', [WarehouseController::class, 'destroy']);
-Route::post('/magazzino/{id}', [WarehouseController::class, 'sposta']);
-Route::put('/magazzino', [WarehouseController::class, 'cerca']);
-Route::get('/negozio', [ShopController::class, 'index']);
-Route::delete('/negozio/{id}', [ShopController::class, 'destroy']);
-Route::post('/negozio/{id}', [ShopController::class, 'venduto']);
-Route::put('/negozio', [ShopController::class, 'cerca']);
-Route::view('/ricerca', 'cerca');
+Route::get('/magazzino', [LogisticController::class, 'magazzino']);
+Route::get('/negozio', [LogisticController::class, 'negozio']);
+Route::get('/elimina/{id}/{quantita}', [LogisticController::class, 'delete']);
+Route::delete('/elimina/{id}/{quantita}', [LogisticController::class, 'destroy']);

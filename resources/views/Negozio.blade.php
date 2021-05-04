@@ -116,24 +116,20 @@
         <table class="table th">
             <thead class="thead-dark">
               <tr>
-                {{-- <th scope="col" style="width: 80px">ID</th> --}}
                 <th scope="col">EAN</th>
                 <th scope="col">SKU</th>
-                <th scope="col">TIPOLOGIA</th>
-                <th scope="col">MARCA</th>
                 <th scope="col">DESCRIZIONE</th>
+                <th scope="col">QUANTITA'</th>
                 <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>
 
              @foreach ($query as $q)
                 <tr>
-                    {{-- <td>{{$q->id}}</td> --}}
                     <td>{{$q->ean}}</td>
                     <td>{{$q->sku}}</td>
-                    <td>{{$q->type}}</td>
-                    <td>{{$q->brand}}</td>
                     <td>{{$q->descrizione}}</td>
+                    <td>{{$q->quantita}}</td>
                     <td class="botton">
                         <form method="POST" action="/negozio/{{$q->id}}">
                             @csrf
