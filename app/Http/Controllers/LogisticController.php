@@ -21,6 +21,7 @@ class LogisticController extends Controller
 
     public function magazzino()
     {
+        // Questa query riempie la tabella nella pagina "Magazzino"
         $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita
                              FROM logistics, codes, locations
                              WHERE logistics.code_id = codes.id
@@ -33,6 +34,7 @@ class LogisticController extends Controller
 
     public function negozio()
     {
+        // Questa query riempie la tabella nella pagina "Negozio"
         $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita
                              FROM logistics, codes, locations
                              WHERE logistics.code_id = codes.id
@@ -111,19 +113,24 @@ class LogisticController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    // Quando questa funzione viene richimata dal bottone elimina e passati i parametri ID e Quantita vengono applicati 3 casi
     public function destroy(Request $request, $id, $quantita)
     {
         $numero = $request->input('numero');
         $logistic = new Logistic;
         $logistic = $logistic->find($id);
+        // 1° caso vengono eliminati più quantita di quelle esistenti e viene restutito un errore in echo
         if($numero > $quantita)
         {
             echo 'La quantità che si vuole eliminare è maggiore di quella disponibile';
         }
+        // 2° caso vengono eliminati tutte le quantita quindi la riga in questione viene eliminata dal DB
         elseif($numero == $quantita)
         {
             $logistic->delete();
         }
+        //3° caso viene aggiornato il campo quantita sottraendo il numero passato dalla scermata Elimina (da cui sono stati passati i parametri)
         else
         {
             if($numero > 0)
@@ -133,6 +140,8 @@ class LogisticController extends Controller
                     'quantita'=> $newQuantita
                 ]);
             }
+            // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
+            // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
             else{
                 echo 'Smetti di fare il simpatico, grazie';
             }

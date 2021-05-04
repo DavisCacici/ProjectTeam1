@@ -47,6 +47,7 @@
 
     <body>
         <header>
+            <!-- In questa sezione c'è la navbar con tuti i suoi riferimenti -->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container-fluid">
                 <a class="navbar-brand" href="/"><img src="https://www.brandazza.it/wp-content/uploads/2018/07/brandazza-gmg-logo.png" alt = "" width="75" height="75"></img></a>
@@ -98,9 +99,11 @@
                     </ul>
                 </div>
             </nav>
+        <!-- Fine della Navbar -->
         </header>
         <main>
-
+            <!-- in questa sezione passando l'id e la quantità dalla riga della tabella magazzino si possono inserire
+                la quantità di un certo prodotto (che abbiamo richiamato con l'ID) che si vuole eliminare e passare questo dato al controller (LogisticsController) -->
             <form method="POST" action="/elimina/{{$id}}/{{$quantita}}">
                 @csrf
                 @method('DELETE')
