@@ -46,7 +46,7 @@ class LogisticController extends Controller
     }
 
 
-    public function delete($id, $quantita)
+    public function deleteM($id, $quantita)
     {
         return view('Elimina', compact('id', 'quantita'));
     }
@@ -115,7 +115,7 @@ class LogisticController extends Controller
      */
 
     // Quando questa funzione viene richimata dal bottone elimina e passati i parametri ID e Quantita vengono applicati 3 casi
-    public function destroy(Request $request, $id, $quantita)
+    public function destroyM(Request $request, $id, $quantita)
     {
         $numero = $request->input('numero');
         $logistic = new Logistic;

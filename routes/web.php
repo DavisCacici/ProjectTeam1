@@ -27,5 +27,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/magazzino', [LogisticController::class, 'magazzino']);
 Route::get('/negozio', [LogisticController::class, 'negozio']);
-Route::get('/elimina/{id}/{quantita}', [LogisticController::class, 'delete']);
-Route::delete('/elimina/{id}/{quantita}', [LogisticController::class, 'destroy']);
+Route::get('/elimina/{id}/{quantita}', [LogisticController::class, 'deleteM']);
+Route::delete('/elimina/{id}/{quantita}', [LogisticController::class, 'destroyM']);
