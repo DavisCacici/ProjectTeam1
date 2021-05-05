@@ -46,10 +46,11 @@ class LogisticController extends Controller
     }
 
 
-    public function deleteM($id, $quantita)
+    public function delete($id, $quantita)
     {
         return view('Elimina', compact('id', 'quantita'));
     }
+
 
 
     /**
@@ -115,7 +116,7 @@ class LogisticController extends Controller
      */
 
     // Quando questa funzione viene richimata dal bottone elimina e passati i parametri ID e Quantita vengono applicati 3 casi
-    public function destroyM(Request $request, $id, $quantita)
+    public function destroy(Request $request, $id, $quantita)
     {
         $numero = $request->input('numero');
         $logistic = new Logistic;
@@ -146,7 +147,14 @@ class LogisticController extends Controller
                 echo 'Smetti di fare il simpatico, grazie';
             }
         }
-        return redirect('/magazzino');
+        if($logistic->location_id == 1)
+        {
+            return redirect('/magazzino');
+        }
+        else{
+            return redirect('/negozio');
+        }
+
 
 
     }
