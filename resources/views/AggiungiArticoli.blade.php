@@ -85,43 +85,87 @@
         </header>
 
         <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <form method="POST" action="">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                    <div class="form-group">
+                                        <div class="left-inner-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                                <select name='code_id'placeholder="Code" class="form-control focus">
+                                                    <option selected value=""></option>
+                                                    @foreach($code as $k=>$v)
+                                                    <option value='{{$k}}'>{{$v}}</option>
+                                                @endforeach
+                                                </select>
+                                        </div>
+                                    </div>
+                                    <br>
 
-        <div class="container">
-            <form method="POST" action="">
-                @csrf
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
+                                    <br>
 
-                            <div class="form-group">
-                                <div class="left-inner-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                        <select name='code_id'placeholder="Code" class="form-control focus">
-                                            <option selected value=""></option>
-                                            @foreach($code as $k=>$v)
-                                            <option value='{{$k}}'>{{$v}}</option>
-                                        @endforeach
-                                        </select>
+                                    <div class="form-group">
+                                        <div class="left-inner-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            <input class="form-control focus" type="text" placeholder="quantita" name="quantita">
+                                        </div>
+                                    </div>
+                                    <br>
+
+
+                                <div class="button">
+                                    <button class="btn btn-info" type="submit" id="button">Aggiungi Articolo</button>
                                 </div>
                             </div>
-                            <br>
+                    </form>
+                </div>
+            </div>
+            <div class="col">
+                <div class="container">
+                    <form method="POST" action="">
+                        @csrf
+                        @method('PUT')
+                        <div class="row">
+                            <div class="col-md-4 col-md-offset-4">
+                                    <div class="form-group">
+                                        <div class="left-inner-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            <input class="form-control focus" type="text" placeholder="ean" name="ean">
+                                        </div>
+                                    </div>
+                                    <br>
 
-                            <br>
+                                    <div class="form-group">
+                                        <div class="left-inner-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            <input class="form-control focus" type="text" placeholder="sku" name="sku">
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <div class="left-inner-addon">
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <input class="form-control focus" type="text" placeholder="quantita" name="quantita">
+                                    <br>
+
+                                    <div class="form-group">
+                                        <div class="left-inner-addon">
+                                            <i class="glyphicon glyphicon-user"></i>
+                                            <input class="form-control focus" type="text" placeholder="descrizione" name="descrizione">
+                                        </div>
+                                    </div>
+                                    <br>
+
+
+                                <div class="button">
+                                    <button class="btn btn-info" type="submit" id="button">Aggiungi Nuovo Codice</button>
                                 </div>
                             </div>
-                            <br>
-
-
-                        <div class="button">
-                            <button class="btn btn-info" type="submit" id="button">Aggiungi Articolo</button>
                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-
-            </form>
 
 
         <!-- Optional JavaScript -->

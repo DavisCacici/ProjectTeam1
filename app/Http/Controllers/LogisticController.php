@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Logistic;
-use App\Models\Ean;
+use App\Models\Code;
 use Illuminate\Support\Facades\DB;
 
 class LogisticController extends Controller
@@ -117,23 +117,24 @@ class LogisticController extends Controller
         // 2° caso vengono eliminati tutte le quantita quindi la riga in questione viene eliminata dal DB
         elseif($numero == $quantita)
         {
-            // $query = new Logistic;
-            // $query->where($query->location_id, '2')->where($query->code_id, $logistic->code_id);
             $query = DB::select('SELECT *
-                                 FROM logistics
-                                 WHERE logistics.location_id = 2
-                                 AND logistics.code_id = ?', [$logistic->code_id]);
-
-
+                                     FROM logistics
+                                     WHERE logistics.location_id = 2');
+            $flag = true;
             $query = (object)$query;
-            if($query)
+            foreach($query as $q)
             {
-                DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
-                $logistic->delete();
+                if($q->code_id == $logistic->code_id)
+                {
+                    DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                    $logistic->delete();
+                }
             }
-            else
+
+            if($flag)
             {
-                $query->create([
+                $log = new Logistic;
+                $log::create([
                     'code_id'=> $logistic->code_id,
                     'location_id'=>2,
                     'quantita'=> $numero
@@ -150,23 +151,29 @@ class LogisticController extends Controller
             {
                 $query = DB::select('SELECT *
                                      FROM logistics
-                                     WHERE logistics.location_id = 2
-                                     AND logistics.code_id = ?', [$logistic->code_id]);
+                                     WHERE logistics.location_id = 2');
 
-
+                $flag = true;
                 $query = (object)$query;
-                if($query)
+                foreach($query as $q)
                 {
-                    DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                    if($q->code_id == $logistic->code_id)
+                    {
+                        DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
 
-                    $newQuantita = $quantita - $numero;
-                    $logistic->update([
-                        'quantita'=>$newQuantita
-                    ]);
+                        $newQuantita = $quantita - $numero;
+                        $logistic->update([
+                            'quantita'=>$newQuantita
+                        ]);
+                        $flag = false;
+                        break;
+                    }
+
                 }
-                else
+                if($flag)
                 {
-                    $query->create([
+                    $log = new Logistic;
+                    $log::create([
                         'code_id'=> $logistic->code_id,
                         'location_id'=>2,
                         'quantita'=> $numero
@@ -176,6 +183,7 @@ class LogisticController extends Controller
                         'quantita'=>$newQuantita
                     ]);
                 }
+
             }
             // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
             // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
@@ -228,6 +236,19 @@ class LogisticController extends Controller
             ]);
         }
         return redirect('/magazzino');
+    }
+
+    public function newcode(Request $request)
+    {
+        $code = new Code;
+        $code->create([
+            'ean'=>$request->input('ean'),
+            'sku'=>$request->input('sku'),
+            'descrizione'=>$request->input('descrizione')
+        ]);
+
+        return redirect('/newarticoli');
+
     }
 
     /**
