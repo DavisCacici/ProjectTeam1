@@ -26,7 +26,7 @@ class LogisticController extends Controller
                              FROM logistics, codes, locations
                              WHERE logistics.code_id = codes.id
                              AND logistics.location_id = locations.id
-                             AND logistics.location_id LIKE "1"');
+                             AND locations.nome LIKE "magazzino"');
         $query = (object)$query;
         // dd($query);
         return view('Magazzino', compact('query'));
@@ -39,7 +39,7 @@ class LogisticController extends Controller
                              FROM logistics, codes, locations
                              WHERE logistics.code_id = codes.id
                              AND logistics.location_id = locations.id
-                             AND logistics.location_id LIKE "2"');
+                             AND locations.nome LIKE "negozio"');
         $query = (object)$query;
         // dd($query);
         return view('Negozio', compact('query'));
