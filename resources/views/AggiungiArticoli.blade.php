@@ -18,18 +18,30 @@
     <style>
         .container{
             margin-top: 2%;
-            margin-left: 30%;
-
+			width: 500px;
         }
 
         .form-group{
-             border: 1px solid rgb(43, 45, 50);
-             width: 500px;
+			border: 1px solid rgb(43, 45, 50);
+			margin-top: 5%;
+            width: 450px;
         }
 
         .button{
-            margin-left: 42%;
+			margin-bottom: 5%;
+            width: 300px;
+            border: 1px black;
         }
+
+		.primo{
+			margin-left:50%;
+		}
+
+		.secondo{
+			margin-left:50%;
+		}
+
+
     </style>
 
     <body>
@@ -88,6 +100,7 @@
         <div class="row">
             <div class="col">
                 <div class="container">
+
                     <form method="POST" action="">
                         @csrf
                         <div class="row">
@@ -103,9 +116,6 @@
                                                 </select>
                                         </div>
                                     </div>
-                                    <br>
-
-                                    <br>
 
                                     <div class="form-group">
                                         <div class="left-inner-addon">
@@ -113,16 +123,16 @@
                                             <input class="form-control focus" type="text" placeholder="quantita" name="quantita">
                                         </div>
                                     </div>
-                                    <br>
-
 
                                 <div class="button">
-                                    <button class="btn btn-info" type="submit" id="button">Aggiungi Articolo</button>
+                                    <button class="btn btn-info primo" type="submit" id="button">Aggiungi Articolo</button>
                                 </div>
                             </div>
                     </form>
                 </div>
             </div>
+			<br>
+
             <div class="col">
                 <div class="container">
                     <form method="POST" action="">
@@ -136,7 +146,6 @@
                                             <input class="form-control focus" type="text" placeholder="ean" name="ean">
                                         </div>
                                     </div>
-                                    <br>
 
                                     <div class="form-group">
                                         <div class="left-inner-addon">
@@ -145,19 +154,15 @@
                                         </div>
                                     </div>
 
-                                    <br>
-
                                     <div class="form-group">
                                         <div class="left-inner-addon">
                                             <i class="glyphicon glyphicon-user"></i>
                                             <input class="form-control focus" type="text" placeholder="descrizione" name="descrizione">
                                         </div>
                                     </div>
-                                    <br>
-
 
                                 <div class="button">
-                                    <button class="btn btn-info" type="submit" id="button">Aggiungi Nuovo Codice</button>
+                                    <button class="btn btn-info secondo " type="submit" id="button">Aggiungi Nuovo Codice</button>
                                 </div>
                             </div>
                         </div>
