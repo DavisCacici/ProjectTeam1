@@ -16,31 +16,41 @@
     </head>
 
     <style>
-        .container{
-            margin-top: 2%;
-			width: 500px;
-        }
+	.container {
+		width: 500px;
+		text-align:center;
+	}
 
-        .form-group{
-			border: 1px solid rgb(43, 45, 50);
-			margin-top: 5%;
-            width: 450px;
-        }
+	.left {
+		float: left;
+		margin-left: 10%;
+        margin-top: 6%;
+	}
 
-        .button{
-			margin-bottom: 5%;
-            width: 300px;
-            border: 1px black;
-        }
+	.right{
+		float: right;
+        margin-top: 5%;
+		margin-right: 10%;
+	}
 
-		.primo{
-			margin-left:50%;
-		}
+    .form-group{
+        width: 450px;
+        border: 1px solid rgb(95, 136, 227);
+    }
 
-		.secondo{
-			margin-left:50%;
-		}
+    .button{
+        margin-bottom: 5%;
+        text-align: center;
+        width: 300px;
+    }
 
+    .primo{
+		margin-left:50%;
+	}
+
+	.secondo{
+		margin-left:45%;
+	}
 
     </style>
 
@@ -96,11 +106,9 @@
             </nav>
         </header>
 
-        <!-- questa tabella serve per inserire un singolo articolo e aggiungerlo alla tabella successiva per la conferma -->
-        <div class="row">
+		<div class="row">
             <div class="col">
-                <div class="container">
-
+                <div class="container left">
                     <form method="POST" action="">
                         @csrf
                         <div class="row">
@@ -125,53 +133,50 @@
                                     </div>
 
                                 <div class="button">
-                                    <button class="btn btn-info primo" type="submit" id="button">Aggiungi Articolo</button>
+                                    <button class="btn btn-success primo" type="submit" id="button">Aggiungi Articolo</button>
                                 </div>
                             </div>
                     </form>
                 </div>
             </div>
-			<br>
 
-            <div class="col">
-                <div class="container">
-                    <form method="POST" action="">
-                        @csrf
-                        @method('PUT')
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-4">
-                                    <div class="form-group">
-                                        <div class="left-inner-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                            <input class="form-control focus" type="text" placeholder="ean" name="ean">
+        <div class="col">
+                        <div class="container right">
+                            <form method="POST" action="">
+                                @csrf
+                                @method('PUT')
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-4">
+                                            <div class="form-group">
+                                                <div class="left-inner-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                    <input class="form-control focus" type="text" placeholder="ean" name="ean">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="left-inner-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                    <input class="form-control focus" type="text" placeholder="sku" name="sku">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="left-inner-addon">
+                                                    <i class="glyphicon glyphicon-user"></i>
+                                                    <input class="form-control focus" type="text" placeholder="descrizione" name="descrizione">
+                                                </div>
+                                            </div>
+
+                                        <div class="button">
+                                            <button class="btn btn-success secondo " type="submit" id="button">Aggiungi Nuovo Codice</button>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <div class="left-inner-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                            <input class="form-control focus" type="text" placeholder="sku" name="sku">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="left-inner-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                            <input class="form-control focus" type="text" placeholder="descrizione" name="descrizione">
-                                        </div>
-                                    </div>
-
-                                <div class="button">
-                                    <button class="btn btn-info secondo " type="submit" id="button">Aggiungi Nuovo Codice</button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
