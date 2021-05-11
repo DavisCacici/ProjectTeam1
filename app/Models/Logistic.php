@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 //definiione del modello legato alla tabella Logistics
 class Logistic extends Model
@@ -20,4 +21,6 @@ class Logistic extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+
 }

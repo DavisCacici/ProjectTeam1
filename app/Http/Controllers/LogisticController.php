@@ -22,14 +22,15 @@ class LogisticController extends Controller
     public function magazzino()
     {
         // Questa query riempie la tabella nella pagina "Magazzino"
-        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita
+        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita, locations.nome
                              FROM logistics, codes, locations
                              WHERE logistics.code_id = codes.id
                              AND logistics.location_id = locations.id
                              AND locations.nome LIKE "magazzino"');
         $query = (object)$query;
         // dd($query);
-        return view('Magazzino', compact('query'));
+        $magazzino = 'magazzino';
+        return view('Magazzino', compact('query', 'magazzino'));
     }
 
     public function negozio()
@@ -97,13 +98,23 @@ class LogisticController extends Controller
 
 
 
-
+    /**
+     * Quando si preme il bottone sposta situato nella pagina /magazzino
+     * si richiama la view sposta dove verrà passata insieme ad esso
+     * l'id e la quantità presente in quella row che vengo ricevuti
+     * grazie alla pressione del bottone
+     */
     public function move($id, $quantita)
     {
         return view('sposta', compact('id', 'quantita'));
     }
 
-
+    /**
+     * Nella Pagina omonima 'sposta' verranno mandati al seguente metodo
+     * sempre l'id del prodotto insieme alla quantita ma in più rispetto
+     * a prima la request del form che sarà la quantità che dovrà essere
+     * spostata
+     */
     public function sposta(Request $request, $id, $quantita)
     {
         $numero = $request->input('numero');
@@ -200,7 +211,10 @@ class LogisticController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Il seguente metodo ritorna la view AggiungiArticoli e gli
+     * vengono passati i dati della tabella codes in particolare
+     * quelli delle colonne id e codice ean che successivamente
+     * verranno utilizzate per creare una select per la scelta multipla
      *
      * @return \Illuminate\Http\Response
      */
@@ -211,8 +225,9 @@ class LogisticController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * Creare o incrementare i prodotti nel Magazzino
+     * il metodo store in parole povere prende le richieste inviate dal nostro form
+     * e se esistesse un elemento all'interno lo si incrementa altrimenti lo si crea
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -238,6 +253,10 @@ class LogisticController extends Controller
         return redirect('/magazzino');
     }
 
+
+    /**
+     * Il metodo newcode svolge la funzione di creare un nuovo record nella tabella Code
+    */
     public function newcode(Request $request)
     {
         $code = new Code;
@@ -249,6 +268,27 @@ class LogisticController extends Controller
 
         return redirect('/newarticoli');
 
+    }
+
+    /**
+     * Il seguente metodo aiuta a ricercare un determinato elemento
+     * filtrando tutte le liste ritornardo il risultato di una query
+     */
+    public function ricerca(Request $request, $location)
+    {
+        $ricerca = $request->input('ricerca');
+        $query = DB::select('SELECT codes.ean, codes.sku, codes.descrizione, logistics.quantita
+                             FROM logistics, codes, locations
+                             WHERE logistics.code_id = codes.id
+                             AND logistics.location_id = locations.id
+                             AND locations.nome LIKE ?
+                             AND (codes.ean LIKE ?
+                             OR codes.sku LIKE ?
+                             OR codes.descrizione LIKE ?
+                             OR logistics.quantita LIKE ?)', [$location, $ricerca, $ricerca, $ricerca, $ricerca]);
+        $query = (object)$query;
+        // dd($query);
+        return view('Ricerca', compact('query', 'location'));
     }
 
     /**

@@ -104,9 +104,7 @@
                 <label class="label"><h1>Magazzino</h1></label>
             </div>
             <div class="col cerca">
-                <form method="POST" action="/magazzino">
-                    @csrf
-                    @method('PUT')
+                <form method="GET" action="/ricerca/{{$magazzino}}">
                     <input type="text" name="ricerca" style="height: 35px">
                     <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
                 </form>
@@ -116,7 +114,6 @@
         <table class="table th">
             <thead class="thead-dark">
               <tr>
-                {{-- <th scope="col" style="width: 80px">ID</th> --}}
                 <th scope="col">EAN</th>
                 <th scope="col">SKU</th>
                 <th scope="col">DESCRIZIONE</th>

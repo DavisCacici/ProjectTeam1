@@ -91,35 +91,36 @@
                 </div>
             </nav>
         </header>
-        <div class="row">
-            <div class="col">
-             <h3 style="text-align: center">Totale Prodotti trovati: {{$conteggio}}</h3>
-            </div>
-        </div>
+        <div class="container" >
+            <br>
 
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                {{-- <th scope="col" style="width: 80px">ID</th> --}}
-                <th scope="col" style="width: 110px" >EAN</th>
-                <th scope="col" style="width: 110px">SKU</th>
-                <th scope="col" style="width: 110px">TIPOLOGIA</th>
-                <th scope="col" style="width: 110px">MARCA</th>
-                <th scope="col" style="width: 110px">DESCRIZIONE</th>
-              </tr>
-            </thead>
+            <h1>{{$location}}</h1>
 
-            @foreach ($query as $q)
+            <br>
+
+            <table class="table">
+                <thead class="thead-dark">
                 <tr>
-                    {{-- <td>{{$q->id}}</td> --}}
-                    <td>{{$q->ean}}</td>
-                    <td>{{$q->sku}}</td>
-                    <td>{{$q->type}}</td>
-                    <td>{{$q->brand}}</td>
-                    <td>{{$q->descrizione}}</td>
+                    {{-- <th scope="col" style="width: 80px">ID</th> --}}
+                    <th scope="col" style="width: 110px" >EAN</th>
+                    <th scope="col" style="width: 110px">SKU</th>
+                    <th scope="col" style="width: 110px">DESCRIZIONE</th>
+                    <th scope="col" style="width: 110px">QUANTITA</th>
                 </tr>
-            @endforeach
-        </table>
+                </thead>
+
+                @foreach ($query as $q)
+                    <tr>
+                        {{-- <td>{{$q->id}}</td> --}}
+                        <td>{{$q->ean}}</td>
+                        <td>{{$q->sku}}</td>
+                        <td>{{$q->descrizione}}</td>
+                        <td>{{$q->quantita}}</td>
+                    </tr>
+
+                @endforeach
+            </table>
+        </div>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -26,6 +26,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/magazzino', [LogisticController::class, 'magazzino']);
+Route::get('/ricerca/{location}', [LogisticController::class, 'ricerca']);
+Route::get('/ricerca/{location}/risultato', function () {
+    return view('Ricerca');
+});
 Route::get('/negozio', [LogisticController::class, 'negozio']);
 Route::get('/newarticoli', [LogisticController::class, 'create']);
 Route::post('/newarticoli', [LogisticController::class, 'store']);
