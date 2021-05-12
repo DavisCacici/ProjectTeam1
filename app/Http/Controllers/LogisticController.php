@@ -245,46 +245,41 @@ class LogisticController extends Controller
         $code = $request->input('code');
         $quantita = $request->input('quantita');
 
-        $ean = new Code;
-        $ean = $ean->select('id')->where('ean', $code)->get();
+
+        $ean =  DB::table('codes')->select('id')->where('ean', $code)->get();
+        $ean = $ean[0];
+        // dd($ean->id);
 
         // $query = DB::select('SELECT * FROM logistics WHERE location_id = 1 AND code_id = ?', [$ean]);
         // $query = (object)$query;
         // dd($query);
-        $query = new Logistic;
-        $query = $query->code()->where('location_id', 1)->where('logistics.codes.ean', $code);
-        dd($query);
+        $query = DB::table('logistics')
+                ->join('codes', 'logistics.code_id', '=','codes.id')
+                ->select('logistics.*', 'codes.ean')
+                ->where('logistics.location_id', 1)
+                ->where('codes.ean', $code)
+                ->get();
 
-        if($query)
+
+        // dd($query);
+
+        // dd($query->quantita);
+
+        if(count($query) > 0)
         {
-            $query->increment('quantita', $quantita);
+            DB::table('logistics')
+                ->where('location_id', 1)
+                ->where('code_id', $ean->id)
+                ->increment('quantita', $quantita);
         }
         else{
             $new = new logistic;
             $new->create([
-                'code_id'=>$ean,
+                'code_id'=>$ean->id,
                 'location_id'=>1,
                 'quantita'=>$quantita
             ]);
         }
-        // $flag = true;
-        // foreach($query as $q)
-        // {
-        //     if($q->location_id == 1 && $q->code_id == $ean->id)
-        //     {
-        //         $q->quantita += $quantita;
-        //         $flag = false;
-        //     }
-        // }
-
-        // if($flag){
-        //     $new = new logistic;
-        //     $new->create([
-        //         'code_id'=>$ean,
-        //         'location_id'=>1,
-        //         'quantita'=>$quantita
-        //     ]);
-        // }
         return redirect('/magazzino');
     }
 
