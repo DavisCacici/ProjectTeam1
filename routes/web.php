@@ -38,7 +38,6 @@ Route::get('/elimina/{id}/{quantita}', [LogisticController::class, 'delete']);
 Route::delete('/elimina/{id}/{quantita}', [LogisticController::class, 'destroy']);
 Route::get('/sposta/{id}/{quantita}', [LogisticController::class, 'move']);
 Route::post('/sposta/{id}/{quantita}', [LogisticController::class, 'sposta']);
-Route::get('/vendi/{id}/{quantita}',function () {
-    return view('vendi');
-});
+Route::get('/vendi/{id}/{quantita}', [LogisticController::class, 'sell']);
 Route::post('/vendi/{id}/{quantita}', [LogisticController::class, 'vendi']);
+Route::get('/storico', [LogisticController::class, 'storico']);

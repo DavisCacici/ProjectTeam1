@@ -14,9 +14,18 @@ class LogisticController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function storico()
     {
-
+        // Questa query riempie la tabella nella pagina "Magazzino"
+        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita, locations.nome
+                            FROM logistics, codes, locations
+                            WHERE logistics.code_id = codes.id
+                            AND logistics.location_id = locations.id
+                            AND locations.nome LIKE "storico"');
+        $query = (object)$query;
+        // dd($query);
+        $storico = 'storico';
+        return view('ProdottiVenduti', compact('query', 'storico'));
     }
 
     public function magazzino()
@@ -317,6 +326,11 @@ class LogisticController extends Controller
         return view('Ricerca', compact('query', 'location'));
     }
 
+    public function sell($id, $quantita)
+    {
+        return view('vendi', compact('id', 'quantita'));
+    }
+
 
     // Quando questa funzione viene richimata dal bottone venduto e passati i parametri ID e Quantita vengono applicati 3 casi
     public function vendi(Request $request, $id, $quantita)
@@ -334,7 +348,7 @@ class LogisticController extends Controller
         {
             $query = DB::select('SELECT *
                                      FROM logistics
-                                     WHERE logistics.location_id = 2');
+                                     WHERE logistics.location_id = 3');
             $flag = true;
             $query = (object)$query;
             foreach($query as $q)
@@ -366,7 +380,7 @@ class LogisticController extends Controller
             {
                 $query = DB::select('SELECT *
                                      FROM logistics
-                                     WHERE logistics.location_id = 2');
+                                     WHERE logistics.location_id = 3');
 
                 $flag = true;
                 $query = (object)$query;
@@ -406,7 +420,7 @@ class LogisticController extends Controller
                 echo 'Smetti di fare il simpatico, grazie';
             }
         }
-        return redirect('/negozio');
+        return redirect('/storico');
     }
 
     /**

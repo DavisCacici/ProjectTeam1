@@ -109,12 +109,11 @@
             <thead class="thead-dark">
               <tr>
                 {{-- <th scope="col" style="width: 80px">ID</th> --}}
-                <th scope="col" style="width: 110px" >EAN</th>
-                <th scope="col" style="width: 110px">SKU</th>
-                <th scope="col" style="width: 110px">TIPOLOGIA</th>
-                <th scope="col" style="width: 110px">MARCA</th>
-                <th scope="col" style="width: 110px">DESCRIZIONE</th>
-                <th scope="col"style="width: 110px">DATA</th>
+                <th scope="col">EAN</th>
+                <th scope="col">SKU</th>
+                <th scope="col">DESCRIZIONE</th>
+                <th scope="col">QUANTITA'</th>
+                <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>
 
@@ -124,10 +123,8 @@
                 {{-- <td>{{$q->id}}</td> --}}
                 <td>{{$q->ean}}</td>
                 <td>{{$q->sku}}</td>
-                <td>{{$q->type}}</td>
-                <td>{{$q->brand}}</td>
                 <td>{{$q->descrizione}}</td>
-                <td>{{$q->date}}</td>
+                <td>{{$q->quantita}}</td>
             </tr>
         @endforeach
 
