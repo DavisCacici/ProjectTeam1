@@ -291,6 +291,98 @@ class LogisticController extends Controller
         return view('Ricerca', compact('query', 'location'));
     }
 
+
+    // Quando questa funzione viene richimata dal bottone venduto e passati i parametri ID e Quantita vengono applicati 3 casi
+    public function vendi(Request $request, $id, $quantita)
+    {
+        $numero = $request->input('numero');
+        $logistic = new Logistic;
+        $logistic = $logistic->find($id);
+        // 1° caso si cerca di spostare in vendute più quantita di quelle esistenti e viene restutito un errore in echo
+        if($numero > $quantita)
+        {
+            echo 'La quantità che si vuole eliminare è maggiore di quella disponibile';
+        }
+        // 2° caso si cerca di spostare in vendute tutte le quantita quindi la riga in questione viene eliminata dal DB
+        elseif($numero == $quantita)
+        {
+            $query = DB::select('SELECT *
+                                     FROM logistics
+                                     WHERE logistics.location_id = 2');
+            $flag = true;
+            $query = (object)$query;
+            foreach($query as $q)
+            {
+                if($q->code_id == $logistic->code_id)
+                {
+                    DB::table('logistics')->where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                    $logistic->delete();
+                }
+            }
+
+            if($flag)
+            {
+                $log = new Logistic;
+                $log::create([
+                    'code_id'=> $logistic->code_id,
+                    'location_id'=>3,
+                    'quantita'=> $numero
+                ]);
+                $logistic->delete();
+            }
+
+
+        }
+        //3° caso viene aggiornato il campo quantita sottraendo il numero passato dalla scermata Elimina (da cui sono stati passati i parametri)
+        else
+        {
+            if($numero > 0)
+            {
+                $query = DB::select('SELECT *
+                                     FROM logistics
+                                     WHERE logistics.location_id = 2');
+
+                $flag = true;
+                $query = (object)$query;
+                foreach($query as $q)
+                {
+                    if($q->code_id == $logistic->code_id)
+                    {
+                        DB::table('logistics')->where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+
+                        $newQuantita = $quantita - $numero;
+                        $logistic->update([
+                            'quantita'=>$newQuantita
+                        ]);
+                        $flag = false;
+                        break;
+                    }
+
+                }
+                if($flag)
+                {
+                    $log = new Logistic;
+                    $log::create([
+                        'code_id'=> $logistic->code_id,
+                        'location_id'=>3,
+                        'quantita'=> $numero
+                    ]);
+                    $newQuantita = $quantita - $numero;
+                    $logistic->update([
+                        'quantita'=>$newQuantita
+                    ]);
+                }
+
+            }
+            // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
+            // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
+            else{
+                echo 'Smetti di fare il simpatico, grazie';
+            }
+        }
+        return redirect('/negozio');
+    }
+
     /**
      * Display the specified resource.
      *
