@@ -9,4 +9,8 @@ class Location extends Model
 {
     use HasFactory;
     protected $fillable = ['nome'];
+    public function location()
+    {
+        return $this->hasMany(Logistic::class);
+    }
 }

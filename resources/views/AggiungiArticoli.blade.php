@@ -114,16 +114,16 @@
                         <div class="row">
                             <div class="col-md-4 col-md-offset-4">
                                     <div class="form-group">
-                                        <div class="left-inner-addon">
-                                            <i class="glyphicon glyphicon-user"></i>
-                                                <select name='code_id'placeholder="Code" class="form-control focus">
-                                                    <option selected value=""></option>
-                                                    @foreach($code as $k=>$v)
-                                                    <option value='{{$k}}'>{{$v}}</option>
-                                                @endforeach
-                                                </select>
-                                        </div>
+                                        {{-- <label for="exampleDataList" class="form-label">Ean</label> --}}
+                                        <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Ean" name='code'>
+                                        <datalist id="datalistOptions">
+                                            @foreach($code as $k=>$v)
+                                                <option value='{{$v}}'>
+                                            @endforeach
+                                        </datalist>
                                     </div>
+
+
 
                                     <div class="form-group">
                                         <div class="left-inner-addon">

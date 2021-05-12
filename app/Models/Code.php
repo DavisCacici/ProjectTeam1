@@ -9,4 +9,9 @@ class Code extends Model
 {
     use HasFactory;
     protected $fillable = ['ean','sku','descrizione'];
+
+    public function code()
+    {
+        return $this->hasMany(Logistic::class);
+    }
 }

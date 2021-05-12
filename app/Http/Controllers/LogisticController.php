@@ -233,23 +233,49 @@ class LogisticController extends Controller
      */
     public function store(Request $request)
     {
-        $code = $request->input('code_id');
+        $code = $request->input('code');
         $quantita = $request->input('quantita');
-        $query = DB::select('SELECT * FROM logistics
-                             WHERE location_id = 1
-                             AND code_id = ?', [$code]);
+
+        $ean = new Code;
+        $ean = $ean->select('id')->where('ean', $code)->get();
+
+        // $query = DB::select('SELECT * FROM logistics WHERE location_id = 1 AND code_id = ?', [$ean]);
+        // $query = (object)$query;
+        // dd($query);
+        $query = new Logistic;
+        $query = $query->code()->where('location_id', 1)->where('logistics.codes.ean', $code);
+        dd($query);
+
         if($query)
         {
-            DB::table('logistics')->where('location_id', 1)->where('code_id', $code)->increment('quantita', $quantita);
+            $query->increment('quantita', $quantita);
         }
         else{
-            $logistic = new Logistic;
-            $logistic->create([
-                'code_id'=> $code,
-                'location_id'=> 1,
-                'quantita' => $quantita
+            $new = new logistic;
+            $new->create([
+                'code_id'=>$ean,
+                'location_id'=>1,
+                'quantita'=>$quantita
             ]);
         }
+        // $flag = true;
+        // foreach($query as $q)
+        // {
+        //     if($q->location_id == 1 && $q->code_id == $ean->id)
+        //     {
+        //         $q->quantita += $quantita;
+        //         $flag = false;
+        //     }
+        // }
+
+        // if($flag){
+        //     $new = new logistic;
+        //     $new->create([
+        //         'code_id'=>$ean,
+        //         'location_id'=>1,
+        //         'quantita'=>$quantita
+        //     ]);
+        // }
         return redirect('/magazzino');
     }
 
