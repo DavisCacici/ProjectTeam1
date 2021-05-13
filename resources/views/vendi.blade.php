@@ -12,37 +12,11 @@
     </head>
 
     <style>
-        .label{
-            text-align: left;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            margin-left: 4%;
-        }
-
-        .table{
-            width: 96%;
-            margin-right: 2%;
-            margin-left: 2%;
-        }
-
-        .botton{
-            display: flex;
-        }
-
-        .cerca{
-            text-align: right;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            margin-right: 2%;
-        }
-
-        .th{
-            width: 96%;
-        }
-
-        .td{
-            width: 200px;
-        }
+           .container {
+		width: 500px;
+		text-align:center;
+        margin-top: 5%;
+	}
     </style>
 
     <body>
@@ -101,6 +75,7 @@
             </nav>
         <!-- Fine della Navbar -->
         </header>
+        <div class="container">
         <main>
             <!-- in questa sezione passando l'id e la quantità dalla riga della tabella magazzino si possono inserire
                 la quantità di un certo prodotto (che abbiamo richiamato con l'ID) che si vuole eliminare e passare questo dato al controller (LogisticsController) -->
@@ -111,6 +86,7 @@
                 <input type="text" name="numero"/>
                 <button type="submit" class="btn btn-primary">Vendi</button>
             </form>
+        </div>
 
         </main>
          <!-- Optional JavaScript -->

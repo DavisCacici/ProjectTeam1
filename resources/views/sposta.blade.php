@@ -12,37 +12,11 @@
     </head>
 
     <style>
-        .label{
-            text-align: left;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            margin-left: 4%;
-        }
-
-        .table{
-            width: 96%;
-            margin-right: 2%;
-            margin-left: 2%;
-        }
-
-        .botton{
-            display: flex;
-        }
-
-        .cerca{
-            text-align: right;
-            margin-top: 1%;
-            margin-bottom: 1%;
-            margin-right: 2%;
-        }
-
-        .th{
-            width: 96%;
-        }
-
-        .td{
-            width: 200px;
-        }
+        .container {
+            width: 500px;
+            text-align:center;
+            margin-top: 5%;
+	    }
     </style>
 
     <body>
@@ -104,14 +78,15 @@
         <main>
             <!-- in questa sezione passando l'id e la quantità dalla riga della tabella magazzino si possono inserire
                 la quantità di un certo prodotto (che abbiamo richiamato con l'ID) che si vuole eliminare e passare questo dato al controller (LogisticsController) -->
-            <h3>Questo manovra sposterà la quantità da lei indicata al negozio</h3>
-            <form method="POST" action="/sposta/{{$id}}/{{$quantita}}">
-                @csrf
-                <p>Quantità disponibile {{$quantita}}</p>
-                <input type="text" name="numero"/>
-                <button type="submit" class="btn btn-primary">Sposta</button>
-            </form>
-
+                <div class="container">
+                    <h3>Questo manovra sposterà la quantità da lei indicata al negozio</h3>
+                    <form method="POST" action="/sposta/{{$id}}/{{$quantita}}">
+                        @csrf
+                        <p>Quantità disponibile {{$quantita}}</p>
+                        <input type="text" name="numero"/>
+                        <button type="submit" class="btn btn-primary">Sposta</button>
+                    </form>
+                </div>
         </main>
          <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
