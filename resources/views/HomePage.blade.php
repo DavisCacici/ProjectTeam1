@@ -123,7 +123,6 @@
                         <br>
 
                         <div class="button">
-                            <button class="btn btn-info" type="submit">Registrati</button>
                             <a class="btn btn-warning" href="">Accedi</a>
                         </div>
                 </div>
