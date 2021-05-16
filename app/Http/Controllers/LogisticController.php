@@ -16,12 +16,14 @@ class LogisticController extends Controller
      */
     public function storico()
     {
-        // Questa query riempie la tabella nella pagina "Magazzino"
-        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita, locations.nome
-                            FROM logistics, codes, locations
-                            WHERE logistics.code_id = codes.id
-                            AND logistics.location_id = locations.id
-                            AND locations.nome LIKE "storico"');
+        // Questa query riempie la tabella nella pagina "ProdottiVenduti"
+
+        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
+                 ->join('locations', 'logistics.location_id', '=', 'locations.id')
+                 ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
+                 ->where('locations.nome', 'LIKE', 'storico')->get();
+
+
         $query = (object)$query;
         // dd($query);
         $storico = 'storico';
@@ -31,11 +33,10 @@ class LogisticController extends Controller
     public function magazzino()
     {
         // Questa query riempie la tabella nella pagina "Magazzino"
-        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita, locations.nome
-                             FROM logistics, codes, locations
-                             WHERE logistics.code_id = codes.id
-                             AND logistics.location_id = locations.id
-                             AND locations.nome LIKE "magazzino"');
+        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
+                ->join('locations', 'logistics.location_id', '=', 'locations.id')
+                ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
+                ->where('locations.nome', 'LIKE', 'magazzino')->get();
         $query = (object)$query;
         // dd($query);
         $magazzino = 'magazzino';
@@ -45,14 +46,14 @@ class LogisticController extends Controller
     public function negozio()
     {
         // Questa query riempie la tabella nella pagina "Negozio"
-        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita
-                             FROM logistics, codes, locations
-                             WHERE logistics.code_id = codes.id
-                             AND logistics.location_id = locations.id
-                             AND locations.nome LIKE "negozio"');
+        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
+                ->join('locations', 'logistics.location_id', '=', 'locations.id')
+                ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
+                ->where('locations.nome', 'LIKE', 'negozio')->get();
         $query = (object)$query;
+        $negozio = 'negozio';
         // dd($query);
-        return view('Negozio', compact('query'));
+        return view('Negozio', compact('query', 'negozio'));
     }
 
 
@@ -70,12 +71,19 @@ class LogisticController extends Controller
         // 1° caso vengono eliminati più quantita di quelle esistenti e viene restutito un errore in echo
         if($numero > $quantita)
         {
-            echo 'La quantità che si vuole eliminare è maggiore di quella disponibile';
+            return '<h1>La quantità che si vuole eliminare è maggiore di quella disponibile</h1>';
         }
         // 2° caso vengono eliminati tutte le quantita quindi la riga in questione viene eliminata dal DB
         elseif($numero == $quantita)
         {
             $logistic->delete();
+            if($logistic->location_id == 1)
+            {
+                return redirect('/magazzino');
+            }
+            else{
+                return redirect('/negozio');
+            }
         }
         //3° caso viene aggiornato il campo quantita sottraendo il numero passato dalla scermata Elimina (da cui sono stati passati i parametri)
         else
@@ -86,20 +94,22 @@ class LogisticController extends Controller
                 $logistic->update([
                     'quantita'=> $newQuantita
                 ]);
+
+                if($logistic->location_id == 1)
+                {
+                    return redirect('/magazzino');
+                }
+                else{
+                    return redirect('/negozio');
+                }
             }
             // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
             // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
             else{
-                echo 'Smetti di fare il simpatico, grazie';
+                return '<h1>Smetti di fare il simpatico, grazie</h1>';
             }
         }
-        if($logistic->location_id == 1)
-        {
-            return redirect('/magazzino');
-        }
-        else{
-            return redirect('/negozio');
-        }
+
 
     }
 
@@ -129,24 +139,23 @@ class LogisticController extends Controller
         $numero = $request->input('numero');
         $logistic = new Logistic;
         $logistic = $logistic->find($id);
+        $query = Logistic::where('location_id', 2)->get();
+        $query = (object)$query;
         // 1° caso vengono eliminati più quantita di quelle esistenti e viene restutito un errore in echo
         if($numero > $quantita)
         {
-            echo 'La quantità che si vuole eliminare è maggiore di quella disponibile';
+            return '<h1>La quantità che si vuole eliminare è maggiore di quella disponibile</h1>';
         }
         // 2° caso vengono eliminati tutte le quantita quindi la riga in questione viene eliminata dal DB
         elseif($numero == $quantita)
         {
-            $query = DB::select('SELECT *
-                                     FROM logistics
-                                     WHERE logistics.location_id = 2');
             $flag = true;
-            $query = (object)$query;
+
             foreach($query as $q)
             {
                 if($q->code_id == $logistic->code_id)
                 {
-                    DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                   Logistic::where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
                     $logistic->delete();
                 }
             }
@@ -162,24 +171,20 @@ class LogisticController extends Controller
                 $logistic->delete();
             }
 
-
+            return redirect('/negozio');
         }
         //3° caso viene aggiornato il campo quantita sottraendo il numero passato dalla scermata Elimina (da cui sono stati passati i parametri)
         else
         {
             if($numero > 0)
             {
-                $query = DB::select('SELECT *
-                                     FROM logistics
-                                     WHERE logistics.location_id = 2');
-
                 $flag = true;
-                $query = (object)$query;
+
                 foreach($query as $q)
                 {
                     if($q->code_id == $logistic->code_id)
                     {
-                        DB::table('logistics')->where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                        Logistic::where('location_id', 2)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
 
                         $newQuantita = $quantita - $numero;
                         $logistic->update([
@@ -203,15 +208,14 @@ class LogisticController extends Controller
                         'quantita'=>$newQuantita
                     ]);
                 }
-
+                return redirect('/negozio');
             }
             // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
             // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
             else{
-                echo 'Smetti di fare il simpatico, grazie';
+                return '<h1>Smetti di fare il simpatico, grazie</h1>';
             }
         }
-        return redirect('/negozio');
 
     }
 
@@ -246,29 +250,18 @@ class LogisticController extends Controller
         $quantita = $request->input('quantita');
 
 
-        $ean =  DB::table('codes')->select('id')->where('ean', $code)->get();
+        $ean =  Code::select('id')->where('ean', $code)->get();
         $ean = $ean[0];
-        // dd($ean->id);
 
-        // $query = DB::select('SELECT * FROM logistics WHERE location_id = 1 AND code_id = ?', [$ean]);
-        // $query = (object)$query;
-        // dd($query);
-        $query = DB::table('logistics')
-                ->join('codes', 'logistics.code_id', '=','codes.id')
+        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
                 ->select('logistics.*', 'codes.ean')
                 ->where('logistics.location_id', 1)
                 ->where('codes.ean', $code)
                 ->get();
 
-
-        // dd($query);
-
-        // dd($query->quantita);
-
         if(count($query) > 0)
         {
-            DB::table('logistics')
-                ->where('location_id', 1)
+            Logistic::where('location_id', 1)
                 ->where('code_id', $ean->id)
                 ->increment('quantita', $quantita);
         }
@@ -307,15 +300,15 @@ class LogisticController extends Controller
     public function ricerca(Request $request, $location)
     {
         $ricerca = $request->input('ricerca');
-        $query = DB::select('SELECT codes.ean, codes.sku, codes.descrizione, logistics.quantita
-                             FROM logistics, codes, locations
-                             WHERE logistics.code_id = codes.id
-                             AND logistics.location_id = locations.id
-                             AND locations.nome LIKE ?
-                             AND (codes.ean LIKE ?
-                             OR codes.sku LIKE ?
-                             OR codes.descrizione LIKE ?
-                             OR logistics.quantita LIKE ?)', [$location, $ricerca, $ricerca, $ricerca, $ricerca]);
+
+        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
+                ->join('locations', 'logistics.location_id', '=', 'locations.id')
+                ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
+                ->where('locations.nome', 'LIKE', $location)
+                ->where('codes.ean', 'LIKE', $ricerca)
+                ->orWhere('codes.sku', 'LIKE', $ricerca)
+                ->orWhere('codes.descrizione', 'LIKE', $ricerca)
+                ->orWhere('logistics.quantita', 'LIKE', $ricerca)->get();
         $query = (object)$query;
         // dd($query);
         return view('Ricerca', compact('query', 'location'));
@@ -333,24 +326,22 @@ class LogisticController extends Controller
         $numero = $request->input('numero');
         $logistic = new Logistic;
         $logistic = $logistic->find($id);
+        $query = Logistic::where('location_id', 3)->get();
+        $query = (object)$query;
         // 1° caso si cerca di spostare in vendute più quantita di quelle esistenti e viene restutito un errore in echo
         if($numero > $quantita)
         {
-            echo 'La quantità che si vuole eliminare è maggiore di quella disponibile';
+            return '<h1>La quantità che si vuole eliminare è maggiore di quella disponibile</h1>';
         }
         // 2° caso si cerca di spostare in vendute tutte le quantita quindi la riga in questione viene eliminata dal DB
         elseif($numero == $quantita)
         {
-            $query = DB::select('SELECT *
-                                     FROM logistics
-                                     WHERE logistics.location_id = 3');
             $flag = true;
-            $query = (object)$query;
             foreach($query as $q)
             {
                 if($q->code_id == $logistic->code_id)
                 {
-                    DB::table('logistics')->where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                    Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
                     $logistic->delete();
                 }
             }
@@ -365,25 +356,19 @@ class LogisticController extends Controller
                 ]);
                 $logistic->delete();
             }
-
-
+            return redirect('/storico');
         }
         //3° caso viene aggiornato il campo quantita sottraendo il numero passato dalla scermata Elimina (da cui sono stati passati i parametri)
         else
         {
             if($numero > 0)
             {
-                $query = DB::select('SELECT *
-                                     FROM logistics
-                                     WHERE logistics.location_id = 3');
-
                 $flag = true;
-                $query = (object)$query;
                 foreach($query as $q)
                 {
                     if($q->code_id == $logistic->code_id)
                     {
-                        DB::table('logistics')->where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                        Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
 
                         $newQuantita = $quantita - $numero;
                         $logistic->update([
@@ -406,16 +391,17 @@ class LogisticController extends Controller
                     $logistic->update([
                         'quantita'=>$newQuantita
                     ]);
-                }
 
+                }
+                return redirect('/storico');
             }
             // Qui viene gestito il caso in cui venga messo in input un numero negativo con un simpatico messaggio
             // (si potrebbe risolvere obbligando a passare nella pagine un tipo certo di dato? )
             else{
-                echo 'Smetti di fare il simpatico, grazie';
+                return '<h1>Smetti di fare il simpatico, grazie</h1>';
             }
         }
-        return redirect('/storico');
+
     }
 
     /**

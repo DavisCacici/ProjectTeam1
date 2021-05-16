@@ -101,21 +101,38 @@
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    {{-- <th scope="col" style="width: 80px">ID</th> --}}
                     <th scope="col" style="width: 110px" >EAN</th>
                     <th scope="col" style="width: 110px">SKU</th>
                     <th scope="col" style="width: 110px">DESCRIZIONE</th>
                     <th scope="col" style="width: 110px">QUANTITA</th>
+                    <th scope="col" class="td">&nbsp</th>
                 </tr>
                 </thead>
 
                 @foreach ($query as $q)
                     <tr>
-                        {{-- <td>{{$q->id}}</td> --}}
                         <td>{{$q->ean}}</td>
                         <td>{{$q->sku}}</td>
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
+                        <td class="botton td">
+                            <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">elimina</button>
+                            </form>
+                            @if($location == 'magazzino')
+                                <form method="GET" action="/sposta/{{$q->id}}/{{$q->quantita}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary">sposta&nbsp</button>
+                                </form>
+                            @endif
+                            @if($location == 'negozio')
+                                <form method="GET" action="/vendi/{{$q->id}}/{{$q->quantita}}">
+                                    @csrf
+                                    <button type="submit"  class="btn btn-primary">venduto</button>
+                                </form>
+                            @endif
+                        </td>
                     </tr>
 
                 @endforeach
