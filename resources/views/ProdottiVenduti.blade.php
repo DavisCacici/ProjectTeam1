@@ -107,10 +107,10 @@
             <thead class="thead-dark">
               <tr>
                 {{-- <th scope="col" style="width: 80px">ID</th> --}}
-                <th scope="col">EAN</th>
-                <th scope="col">SKU</th>
-                <th scope="col">DESCRIZIONE</th>
-                <th scope="col">QUANTITA'</th>
+                <th scope="col" style="width: 200px" >EAN</th>
+                <th scope="col" style="width: 200px" >SKU</th>
+                <th scope="col" style="width: 300px" >DESCRIZIONE</th>
+                <th scope="col" style="width: 200px" >QUANTITA'</th>
                 <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>

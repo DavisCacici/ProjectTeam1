@@ -101,11 +101,11 @@
             <table class="table">
                 <thead class="thead-dark">
                 <tr>
-                    <th scope="col" style="width: 110px" >EAN</th>
-                    <th scope="col" style="width: 110px">SKU</th>
-                    <th scope="col" style="width: 110px">DESCRIZIONE</th>
-                    <th scope="col" style="width: 110px">QUANTITA</th>
-                    <th scope="col" class="td">&nbsp</th>
+                    <th scope="col" style="width: 200px" >EAN</th>
+                    <th scope="col" style="width: 200px">SKU</th>
+                    <th scope="col" style="width: 300px">DESCRIZIONE</th>
+                    <th scope="col" style="width: 200x">QUANTITA</th>
+                    <th scope="col" style="width: 200x">&nbsp</th>
                 </tr>
                 </thead>
 
