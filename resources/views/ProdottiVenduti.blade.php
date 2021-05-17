@@ -96,9 +96,7 @@
                 <label class="label"><h1>Prodotti venduti </h1></label>
             </div>
             <div class="col cerca">
-                <form method="POST" action="/magazzino">
-                    @csrf
-                    @method('PUT')
+                <form method="GET" action="/ricerca/{{$storico}}">
                     <input type="text" name="ricerca" style="height: 35px">
                     <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
                 </form>
