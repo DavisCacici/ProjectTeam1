@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\HistoricController;
+
 use App\Http\Controllers\LogisticController;
 use App\Models\Logistic;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +40,7 @@ Route::post('/sposta/{id}/{quantita}', [LogisticController::class, 'sposta']);
 Route::get('/vendi/{id}/{quantita}', [LogisticController::class, 'sell']);
 Route::post('/vendi/{id}/{quantita}', [LogisticController::class, 'vendi']);
 Route::get('/storico', [LogisticController::class, 'storico']);
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
