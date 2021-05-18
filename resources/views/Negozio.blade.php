@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'HomePage')
+@section('title', 'Negozio')
 @section('content')
 <link  rel=stylesheet type="text/css" href="css/Magazzinostyle.css">
         <div class="row">
