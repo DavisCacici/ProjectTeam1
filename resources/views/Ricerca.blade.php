@@ -14,8 +14,8 @@
                     <th scope="col" style="width: 200px" >EAN</th>
                     <th scope="col" style="width: 200px">SKU</th>
                     <th scope="col" style="width: 300px">DESCRIZIONE</th>
-                    <th scope="col" style="width: 200x">QUANTITA</th>
-                    <th scope="col" style="width: 200x">&nbsp</th>
+                    <th scope="col" style="width: 200px">QUANTITA</th>
+                    <th scope="col" class="td">&nbsp</th>
                 </tr>
                 </thead>
 
@@ -25,7 +25,7 @@
                         <td>{{$q->sku}}</td>
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
-                        <td class="botton td">
+                        <td class="button td">
                             <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
                                 <button type="submit" class="btn btn-danger">elimina</button>
@@ -44,7 +44,6 @@
                             @endif
                         </td>
                     </tr>
-
                 @endforeach
             </table>
         </div>

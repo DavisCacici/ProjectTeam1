@@ -36,6 +36,11 @@
     .botton3{
         display: flex;
     }
+
+    .botton4{
+        display: flex;
+    }
+
     .cerca{
         text-align: right;
         margin-top: 1%;
@@ -49,22 +54,24 @@
         width: 200px;
     }
     .container3{
-            width: 500px;
-            height:500px;
+        width: 500px;
+        height:500px;
     }
 
     .button2{
-            width:500px;
-            text-align:center;
+        width:500px;
+        text-align:center;
     }
     .container2 {
 		width: 500px;
 		text-align:center;
         margin-top: 5%;
+        margin-left: 30%;
 	}
 	.container {
 		width: 500px;
 		text-align:center;
+        margin-top: 5%;s
 	}
 
 	.left {
@@ -88,6 +95,7 @@
         margin-bottom: 5%;
         text-align: center;
         width: 300px;
+        display: flex;
     }
 
     .primo{

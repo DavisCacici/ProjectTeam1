@@ -1,6 +1,7 @@
 @extends('layouts.navbar')
 @section('title', 'HomePage')
 @section('content')
+<link  rel=stylesheet type="text/css" href="css/Magazzinostyle.css">
         <div class="row">
             <div class="col">
                 <label class="label"><h1>Negozio</h1></label>
@@ -31,7 +32,7 @@
                         <td>{{$q->sku}}</td>
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
-                        <td class="botton">
+                        <td class="botton4 td ">
                             <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
                             <button type="submit" class="btn btn-danger">elimina</button>
@@ -48,7 +49,7 @@
                         <td>{{$q->sku}}</td>
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
-                        <td class="botton">
+                        <td class="botton4 td ">
                             <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
                             <button type="submit" class="btn btn-danger">elimina</button>
