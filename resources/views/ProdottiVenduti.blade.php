@@ -21,6 +21,7 @@
                 <th scope="col" style="width: 200px" >SKU</th>
                 <th scope="col" style="width: 300px" >DESCRIZIONE</th>
                 <th scope="col" style="width: 200px" >QUANTITA'</th>
+                <th scope="col" style="width: 200px" >DATA</th>
                 <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>
@@ -33,6 +34,7 @@
                 <td>{{$q->sku}}</td>
                 <td>{{$q->descrizione}}</td>
                 <td>{{$q->quantita}}</td>
+                <td>{{$q->data}}</td>
             </tr>
         @endforeach
 

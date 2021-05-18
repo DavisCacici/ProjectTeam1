@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class Logistic extends Model
 {
     use HasFactory;
-    protected $fillable = ['code_id','location_id','quantita'];
+    protected $fillable = ['code_id','location_id','quantita','data'];
     //stabilisce i vincoli di foregin Key con la tabella Code
     public function code()
     {

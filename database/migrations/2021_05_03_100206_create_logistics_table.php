@@ -18,6 +18,7 @@ class CreateLogisticsTable extends Migration
             $table->foreignId('code_id')->constrained('codes');
             $table->foreignId('location_id')->constrained('locations');
             $table->integer('quantita');
+            $table->date('data')->nullable();
             $table->timestamps();
         });
     }

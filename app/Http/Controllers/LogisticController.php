@@ -20,8 +20,8 @@ class LogisticController extends Controller
 
         $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
                  ->join('locations', 'logistics.location_id', '=', 'locations.id')
-                 ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
-                 ->where('locations.nome', 'LIKE', 'storico')->get();
+                 ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome', 'logistics.data')
+                 ->where('locations.nome', 'LIKE', 'storico')->orderby('data', 'desc')->get();
 
 
         $query = (object)$query;
@@ -323,11 +323,15 @@ class LogisticController extends Controller
     // Quando questa funzione viene richimata dal bottone venduto e passati i parametri ID e Quantita vengono applicati 3 casi
     public function vendi(Request $request, $id, $quantita)
     {
+        $d=strtotime("today");
+        // dd(date('Y-m-d', $d));
+        $date = date('Y-m-d', $d);
         $numero = $request->input('numero');
         $logistic = new Logistic;
         $logistic = $logistic->find($id);
-        $query = Logistic::where('location_id', 3)->get();
+        $query = Logistic::where('location_id', 3)->where('data', $date)->get();
         $query = (object)$query;
+
         // 1° caso si cerca di spostare in vendute più quantita di quelle esistenti e viene restutito un errore in echo
         if($numero > $quantita)
         {
@@ -341,8 +345,9 @@ class LogisticController extends Controller
             {
                 if($q->code_id == $logistic->code_id)
                 {
-                    Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
+                    Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->where('data', $date)->increment('quantita', $numero);
                     $logistic->delete();
+                    $flag = false;
                 }
             }
 
@@ -352,7 +357,8 @@ class LogisticController extends Controller
                 $log::create([
                     'code_id'=> $logistic->code_id,
                     'location_id'=>3,
-                    'quantita'=> $numero
+                    'quantita'=> $numero,
+                    'data'=>date('Y-m-d', $d)
                 ]);
                 $logistic->delete();
             }
@@ -368,8 +374,7 @@ class LogisticController extends Controller
                 {
                     if($q->code_id == $logistic->code_id)
                     {
-                        Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->increment('quantita', $numero);
-
+                        Logistic::where('location_id', 3)->where('code_id', $logistic->code_id)->where('data', $date)->increment('quantita', $numero);
                         $newQuantita = $quantita - $numero;
                         $logistic->update([
                             'quantita'=>$newQuantita
@@ -385,7 +390,8 @@ class LogisticController extends Controller
                     $log::create([
                         'code_id'=> $logistic->code_id,
                         'location_id'=>3,
-                        'quantita'=> $numero
+                        'quantita'=> $numero,
+                        'data'=>date('Y-m-d', $d)
                     ]);
                     $newQuantita = $quantita - $numero;
                     $logistic->update([
