@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'HomePage')
+@section('title', 'Vendi')
 @section('content')
         <main>
             <!-- in questa sezione passando l'id e la quantità dalla riga della tabella magazzino si possono inserire

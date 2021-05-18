@@ -1,5 +1,5 @@
 @extends('layouts.navbar')
-@section('title', 'HomePage')
+@section('title', 'Ricerca')
 @section('content')
         <div class="container" >
             <br>
