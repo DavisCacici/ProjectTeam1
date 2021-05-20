@@ -312,14 +312,6 @@ class LogisticController extends Controller
                              OR logistics.quantita LIKE ?
                              OR logistics.data LIKE ?)', [$location, $ricerca, $ricerca, $ricerca, $ricerca, $ricerca]);
 
-        // $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
-        //         ->join('locations', 'logistics.location_id', '=', 'locations.id')
-        //         ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
-        //         ->where('locations.nome', 'LIKE', $location)
-        //         ->where('codes.ean', 'LIKE', $ricerca)
-        //         ->orWhere('codes.sku', 'LIKE', $ricerca)
-        //         ->orWhere('codes.descrizione', 'LIKE', $ricerca)
-        //         ->orWhere('logistics.quantita', 'LIKE', $ricerca)->get();
         $query = (object)$query;
         // dd($query);
         return view('Ricerca', compact('query', 'location'));
