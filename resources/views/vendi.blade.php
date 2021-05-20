@@ -5,7 +5,7 @@
             <!-- in questa sezione passando l'id e la quantità dalla riga della tabella magazzino si possono inserire
                 la quantità di un certo prodotto (che abbiamo richiamato con l'ID) che si vuole eliminare e passare questo dato al controller (LogisticsController) -->
             <div class="container2">
-                <h3>Questo manovra registrerà come venduta la quantità da lei indicata dal negozio</h3>
+                <h3>Questa manovra registrerà come venduta la quantità da lei indicata dal negozio</h3>
                 <form method="POST" action="/vendi/{{$id}}/{{$quantita}}">
                     @csrf
                     <p>Quantità disponibile {{$quantita}}</p>

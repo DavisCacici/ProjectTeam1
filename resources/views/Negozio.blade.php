@@ -33,14 +33,16 @@
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
                         <td class="botton4 td ">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
                             <button type="submit" class="btn btn-danger">elimina</button>
                             </form>
                             <form method="GET" action="/vendi/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
-                                <button type="submit"  class="btn btn-primary">venduto</button>
+                                <button type="submit"  class="btn btn-primary">vendi</button>
                             </form>
+                            </div>
                         </td>
                     </tr>
                 @else
@@ -50,23 +52,25 @@
                         <td>{{$q->descrizione}}</td>
                         <td>{{$q->quantita}}</td>
                         <td class="botton4 td ">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                             <form method="GET" action="/elimina/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
                             <button type="submit" class="btn btn-danger">elimina</button>
                             </form>
                             <form method="GET" action="/vendi/{{$q->id}}/{{$q->quantita}}">
                                 @csrf
-                                <button type="submit"  class="btn btn-primary">venduto</button>
+                                <button type="submit"  class="btn btn-primary">vendi</button>
                             </form>
+                            </div>
                         </td>
                     </tr>
                 @endif
-                <script>
-                    jQuery(document).ready(function(){
-                        jQuery('.demo').css('background-color', 'orange');
-                    });
-                </script>
             @endforeach
          </table>
+         <script>
+            jQuery(document).ready(function(){
+                jQuery('.demo').css('background-color', 'orange');
+            });
+        </script>
 
 @endsection

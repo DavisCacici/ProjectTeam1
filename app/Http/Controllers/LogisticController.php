@@ -26,7 +26,7 @@ class LogisticController extends Controller
 
         $query = (object)$query;
         // dd($query);
-        $storico = 'storico';
+        $storico = 'Storico';
         return view('ProdottiVenduti', compact('query', 'storico'));
     }
 
@@ -39,7 +39,7 @@ class LogisticController extends Controller
                 ->where('locations.nome', 'LIKE', 'magazzino')->get();
         $query = (object)$query;
         // dd($query);
-        $magazzino = 'magazzino';
+        $magazzino = 'Magazzino';
         return view('Magazzino', compact('query', 'magazzino'));
     }
 
@@ -51,7 +51,7 @@ class LogisticController extends Controller
                 ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
                 ->where('locations.nome', 'LIKE', 'negozio')->get();
         $query = (object)$query;
-        $negozio = 'negozio';
+        $negozio = 'Negozio';
         // dd($query);
         return view('Negozio', compact('query', 'negozio'));
     }
@@ -301,14 +301,25 @@ class LogisticController extends Controller
     {
         $ricerca = $request->input('ricerca');
 
-        $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
-                ->join('locations', 'logistics.location_id', '=', 'locations.id')
-                ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
-                ->where('locations.nome', 'LIKE', $location)
-                ->where('codes.ean', 'LIKE', $ricerca)
-                ->orWhere('codes.sku', 'LIKE', $ricerca)
-                ->orWhere('codes.descrizione', 'LIKE', $ricerca)
-                ->orWhere('logistics.quantita', 'LIKE', $ricerca)->get();
+        $query = DB::select('SELECT logistics.id, codes.ean, codes.sku, codes.descrizione, logistics.quantita, locations.nome, logistics.data
+                             FROM logistics, codes, locations
+                             WHERE logistics.code_id = codes.id
+                             AND logistics.location_id = locations.id
+                             AND locations.nome LIKE ?
+                             AND (codes.ean LIKE ?
+                             OR codes.sku LIKE ?
+                             OR codes.descrizione LIKE ?
+                             OR logistics.quantita LIKE ?
+                             OR logistics.data LIKE ?)', [$location, $ricerca, $ricerca, $ricerca, $ricerca, $ricerca]);
+
+        // $query = Logistic::join('codes', 'logistics.code_id', '=','codes.id')
+        //         ->join('locations', 'logistics.location_id', '=', 'locations.id')
+        //         ->select('logistics.id', 'codes.ean', 'codes.sku', 'codes.descrizione', 'logistics.quantita', 'locations.nome')
+        //         ->where('locations.nome', 'LIKE', $location)
+        //         ->where('codes.ean', 'LIKE', $ricerca)
+        //         ->orWhere('codes.sku', 'LIKE', $ricerca)
+        //         ->orWhere('codes.descrizione', 'LIKE', $ricerca)
+        //         ->orWhere('logistics.quantita', 'LIKE', $ricerca)->get();
         $query = (object)$query;
         // dd($query);
         return view('Ricerca', compact('query', 'location'));

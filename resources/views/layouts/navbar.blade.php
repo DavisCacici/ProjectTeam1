@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
     <head>
         <title> Brandazza|@yield('title')</title>
         <!-- Required meta tags -->

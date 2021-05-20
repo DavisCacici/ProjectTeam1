@@ -7,6 +7,7 @@
                 <form method="POST" action="">
                     @csrf
                     <div class="row">
+                        <h3>Aggiungi nuovo Articolo</h3>
                         <div class="col-md-4 col-md-offset-4">
                             <div class="form-group">
                                 <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Ean" name='code'>
@@ -39,6 +40,7 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
+                        <h3>Aggiungi nuovo Codice</h3>
                         <div class="col-md-4 col-md-offset-4">
                             <div class="form-group">
                                 <div class="left-inner-addon">
