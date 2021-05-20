@@ -21,7 +21,6 @@
                 <th scope="col" style="width: 300px" >DESCRIZIONE</th>
                 <th scope="col" style="width: 200px" >QUANTITA'</th>
                 <th scope="col" style="width: 200px" >DATA</th>
-                <th scope="col" class="td">&nbsp</th>
               </tr>
             </thead>
 
