@@ -8,7 +8,7 @@
             </div>
             <div class="col cerca">
                 <form method="GET" action="/ricerca/{{$negozio}}">
-                    <input type="text" name="ricerca" style="height: 35px">
+                    <input type="text" name="ricerca" style="height: 35px" placeholder="Cerca">
                     <button type="submit" class="btn btn-success" style="height: 35px">cerca</button>
                 </form>
             </div>
