@@ -2,8 +2,9 @@
 
 
 use App\Http\Controllers\LogisticController;
-use App\Models\Logistic;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('Homepage');
+});
+
+Route::post('/user/logout', [LoginController::class, 'out']);
+
+Route::get('/welcome', function(){
+    return view('welcome');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -41,6 +48,11 @@ Route::get('/vendi/{id}/{quantita}', [LogisticController::class, 'sell']);
 Route::post('/vendi/{id}/{quantita}', [LogisticController::class, 'vendi']);
 Route::get('/storico', [LogisticController::class, 'storico']);
 
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+

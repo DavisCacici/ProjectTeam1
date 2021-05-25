@@ -1,6 +1,7 @@
 @extends('layouts.navbar')
 @section('title', 'New Articolo')
 @section('content')
+    @auth
 	<div class="row">
         <div class="col">
             <div class="container left">
@@ -72,5 +73,11 @@
             </div>
         </div>
     </div>
+    @else
+    <div style="text-align: center">
+        <h1>PRIMA DEVI FARE IL LOGIN</h1>
+        <a href="/" class="text-sm text-gray-700 underline">Log in</a>
+    </div>
+    @endauth
 
 @endsection

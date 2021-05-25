@@ -1,6 +1,7 @@
 @extends('layouts.navbar')
 @section('title', 'Storico')
 @section('content')
+    @auth
         <div class="row">
             <div class="col">
                 <label class="label"><h1>Prodotti venduti </h1></label>
@@ -36,4 +37,10 @@
         @endforeach
 
         </table>
+    @else
+    <div style="text-align: center">
+        <h1>PRIMA DEVI FARE IL LOGIN</h1>
+        <a href="/" class="text-sm text-gray-700 underline">Log in</a>
+    </div>
+    @endauth
 @endsection

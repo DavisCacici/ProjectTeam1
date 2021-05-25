@@ -1,52 +1,81 @@
 @extends('layouts.navbar')
 @section('title', 'HomePage')
 @section('content')
-
+    @auth
+    <h1 style="text-align: center">Benvenuto</h1>
+    @else
     <div class="container">
-        <br>
-        <div class="row">
-            <h1>LOGIN</h1>
-            <br>
-            <br>
-            <br>
-            <div class="col-md-4 col-md-offset-4">
-                    <div class="form-group">
-                        <div class="left-inner-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <input class="form-control focus" type="text" placeholder="Nome" name="nome">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <div class="left-inner-addon">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <input class="form-control focus" type="text" placeholder="Cognome" name="cognome">
-                        </div>
-                    </div>
-                    <br>
+        <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
 
-                    <div class="form-group">
-                        <div class="left-inner-addon">
-                            <i class="glyphicon glyphicon-envelope"></i>
-                            <input class="form-control focus" type="text" placeholder="Email" name="email">
-                        </div>
-                    </div>
-                    <br>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
 
-                    <div class="form-group">
-                        <div class="left-inner-addon">
-                            <i class="glyphicon glyphicon-lock"></i>
-                            <input class="form-control focus" type="password" placeholder="Password" name="password">
-                        </div>
-                    </div>
-                    <br>
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                    <div class="button2">
-                        <a class="btn btn-warning" href="">Accedi</a>
-                    </div>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+</div>
 
+
+    @endauth
 
 @endsection

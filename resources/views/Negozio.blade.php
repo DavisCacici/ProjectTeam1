@@ -1,7 +1,8 @@
 @extends('layouts.navbar')
 @section('title', 'Negozio')
 @section('content')
-<link  rel=stylesheet type="text/css" href="css/Magazzinostyle.css">
+    @auth
+        <link  rel=stylesheet type="text/css" href="css/Magazzinostyle.css">
         <div class="row">
             <div class="col">
                 <label class="label"><h1>Negozio</h1></label>
@@ -72,5 +73,12 @@
                 jQuery('.demo').css('background-color', 'orange');
             });
         </script>
+    @else
+        <div style="text-align: center">
+            <h1>PRIMA DEVI FARE IL LOGIN</h1>
+            <a href="/" class="text-sm text-gray-700 underline">Log in</a>
+        </div>
+
+    @endauth
 
 @endsection
